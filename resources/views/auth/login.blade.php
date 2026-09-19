@@ -176,7 +176,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope"></i></span>
                                     <input type="text" class="form-control" id="email" name="email"
-                                        value="{{ old('email', 'admin@voyages.com') }}" placeholder="admin@voyages.com" required autofocus>
+                                        value="" placeholder="admin@voyages.com" required autofocus>
                                 </div>
                             </div>
 
@@ -187,7 +187,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-light text-muted"><i class="bi bi-lock"></i></span>
                                     <input type="password" class="form-control" id="password" name="password"
-                                        value="admin123" placeholder="••••••••" required>
+                                        value="" placeholder="••••••••" required>
                                     <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                         <i class="bi bi-eye" id="toggleIcon"></i>
                                     </button>
