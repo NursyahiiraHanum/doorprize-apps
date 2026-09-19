@@ -501,32 +501,6 @@
     }
 
 
-    function cancelAttendance(attendanceId) {
-        if (!confirm('Yakin ingin membatalkan kehadiran peserta ini?')) return;
-
-        fetch(`/attendance/${attendanceId}`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                "Content-Type": "application/json"
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'success') {
-                const row = document.getElementById(`row-attendance-${attendanceId}`);
-                if (row) row.remove();
-                updateSelectedCount();
-            } else {
-                alert('Gagal membatalkan kehadiran.');
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Terjadi kesalahan pada server.');
-        });
-    }
-
     function toggleSelectAll(masterCheckbox) {
         const checkboxes = document.querySelectorAll('.row-checkbox');
         checkboxes.forEach(cb => cb.checked = masterCheckbox.checked);
