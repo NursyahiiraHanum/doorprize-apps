@@ -144,7 +144,6 @@
                     <!-- Mobile Logo (Visible on mobile screens) -->
                     <div class="text-center d-lg-none mb-4">
                         <img src="{{ asset('theme/assets/images/logo/logo-voyages.png') }}" alt="Voyages Logo" class="login-logo-mobile mb-2">
-                        <h5 class="fw-bold text-dark mb-0">VOYAGES EVENT</h5>
                         <small class="text-muted">Sistem Management & Doorprize</small>
                     </div>
 
