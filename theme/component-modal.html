@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal - GrowigoDash</title>
+    <link rel="shortcut icon" href="assets/images/logo/icon.svg" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-5/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Perfect Scrollbar -->
+    <link rel="stylesheet" href="assets/extensions/perfect-scrollbar/perfect-scrollbar.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/dashboard.css">
+    <style>
+        .modal-success .modal-header {
+            background-color: #198754;
+            color: white;
+        }
+
+        .modal-danger .modal-header {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .modal-warning .modal-header {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .modal-info .modal-header {
+            background-color: #0dcaf0;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-header">
+                <a href="index.html">
+                    <img src="assets/images/logo/logo.svg" alt="Logo" class="sidebar-logo">
+                    <img src="assets/images/logo/icon.svg" alt="Logo" class="sidebar-icon">
+                </a>
+                <div class="sidebar-toggler d-lg-none ms-auto" id="sidebar-close"><i class="bi bi-x fs-2"></i></div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul class="list-unstyled">
+                    <li class="menu-header">Menu</li>
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">UI Components</li>
+
+                    <li class="sidebar-item has-sub active">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-stack"></i>
+                            <span>Components</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-alert.html">Alert</a></li>
+                            <li class="submenu-item"><a href="component-button.html">Button</a></li>
+                            <li class="submenu-item"><a href="component-card.html">Card</a></li>
+                            <li class="submenu-item"><a href="component-carousel.html">Carousel</a></li>
+                            <li class="submenu-item"><a href="component-collapse.html">Collapse</a></li>
+                            <li class="submenu-item"><a href="component-icons.html">Icons</a></li>
+                            <li class="submenu-item active"><a href="component-modal.html">Modal</a></li>
+                            <li class="submenu-item"><a href="component-progress.html">Progress</a></li>
+                            <li class="submenu-item"><a href="component-spinner.html">Spinner</a></li>
+                            <li class="submenu-item"><a href="component-toast.html">Toast</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-box-fill"></i>
+                            <span>Widgets</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-chart.html">Chart</a></li>
+                            <li class="submenu-item"><a href="component-countdown.html">Countdown</a></li>
+                            <li class="submenu-item"><a href="component-map.html">Maps</a></li>
+                            <li class="submenu-item"><a href="component-sweetalert.html">Sweet Alert</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-header">Forms & Tables</li>
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-input-cursor-text"></i>
+                            <span>Forms</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-form.html">Form Input</a></li>
+                            <li class="submenu-item"><a href="component-form-layout.html">Form Layout</a></li>
+                            <li class="submenu-item"><a href="component-editor.html">Editor</a></li>
+                            <li class="submenu-item"><a href="component-file-uploader.html">File Uploader</a></li>
+                            <li class="submenu-item"><a href="component-radio.html">Radio & Checkbox</a></li>
+                            <li class="submenu-item"><a href="component-select.html">Select & Select2</a></li>
+                            <li class="submenu-item"><a href="component-daterange.html">Daterange Picker</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="component-table.html" class="sidebar-link">
+                            <i class="bi bi-table"></i>
+                            <span>Basic Table</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="component-datatable.html" class="sidebar-link">
+                            <i class="bi bi-table"></i>
+                            <span>Datatable</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">Settings</li>
+                    <li class="sidebar-item"><a href="account-profile.html" class="sidebar-link"><i
+                                class="bi bi-person-badge-fill"></i><span>Account</span></a></li>
+                    <li class="sidebar-item"><a href="account-settings.html" class="sidebar-link"><i
+                                class="bi bi-gear-fill"></i><span>Settings</span></a></li>
+                    <li class="sidebar-item"><a href="auth-login.html" class="sidebar-link text-danger"><i
+                                class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                
+                                                                                <li class="sidebar-item sidebar-credits-block mt-4 pt-3 border-top">
+                        <div class="sidebar-info px-4">
+                            <h6 class="text-secondary fw-semibold mb-3">Credits & Info</h6>
+                            <div class="d-flex align-items-center mb-2 text-secondary">
+                                <i class="bi bi-brush me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem">Dibuat oleh <a href="https://instagram.com/fazrianbaryf" target="_blank" class="fw-semibold text-decoration-none text-secondary">Fazrian Baryfikri</a></span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 text-secondary">
+                                <i class="bi bi-building me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem">Growigo Indonesia</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3 text-secondary">
+                                <i class="bi bi-shield-check me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem"><a href="copyright.html" class="fw-semibold text-decoration-none text-secondary">Copyright & Legal</a></span>
+                            </div>
+                            <a href="https://saweria.co/fazrianbaryf" target="_blank" class="btn btn-sm btn-outline-primary fw-semibold w-100 mt-2 rounded-3">
+                                <i class="bi bi-heart-fill me-1 text-danger"></i> Donasi
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar-overlay"></div>
+
+        <div id="main">
+            <header class="navbar-custom">
+                <button class="burger-btn d-block"><i class="bi bi-list"></i></button>
+                <div class="navbar-right">
+                    <div class="dropdown">
+                        <div class="user-dropdown" data-bs-toggle="dropdown">
+                            <div class="user-info text-end me-2 d-none d-md-block">
+                                <div class="user-name">Ari Fazrian</div>
+                                <div class="user-role">Administrator</div>
+                            </div>
+                            <img src="https://ui-avatars.com/api/?name=Ari+Fazrian&background=0E1F4D&color=fff" alt="User"
+                                class="user-avatar">
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><a class="dropdown-item" href="account-profile.html"><i class="bi bi-person me-2"></i>
+                                    My Profile</a></li>
+                            <li><a class="dropdown-item" href="account-settings.html"><i class="bi bi-gear me-2"></i>
+                                    Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="auth-login.html"><i
+                                        class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div id="main-content">
+                <div class="page-heading">
+                    <div class="page-title">Modal</div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item">Components</li>
+                            <li class="breadcrumb-item active" aria-current="page">Modal</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <!-- Column: Solid Trigger Buttons -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Trigger Buttons Gallery</h4>
+                                <p class="text-muted small mb-0">Various button types to launch your modals.</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h6>Solid Color Buttons</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#basicModal">Primary Trigger</button>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#successModal">Success Trigger</button>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModal">Danger Trigger</button>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#warningModal">Warning Trigger</button>
+                                        <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
+                                            data-bs-target="#infoModal">Info Trigger</button>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <h6>Outline Buttons</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#centeredModal">Outline Primary</button>
+                                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                            data-bs-target="#centeredModal">Outline Success</button>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModal">Outline Danger</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6>Icon & Large Triggers</h6>
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        <button type="button" class="btn btn-lg btn-primary shadow"
+                                            data-bs-toggle="modal" data-bs-target="#fullscreenModal">
+                                            <i class="bi bi-arrows-fullscreen me-2"></i> Launch Fullscreen
+                                        </button>
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                            data-bs-target="#loginModal">
+                                            <i class="bi bi-person-lock me-2"></i> User Login
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column: Layout Variations -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Modal Size Varieties</h4>
+                            </div>
+                            <div class="card-body text-center">
+                                <div class="d-flex flex-wrap justify-content-center gap-2">
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#smallModal">Small Modal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal">Default Modal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#largeModal">Large Modal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#xlModal">Extra Large Modal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Templates Gallery -->
+
+                <!-- 1. Success State Modal -->
+                <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-body p-5 text-center">
+                                <div class="mb-4">
+                                    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                                </div>
+                                <h3 class="fw-bold">Success!</h3>
+                                <p class="text-muted mb-4">Your action has been completed successfully. The data is now
+                                    persistent in our secure servers.</p>
+                                <button type="button" class="btn btn-success btn-lg rounded-pill px-5"
+                                    data-bs-dismiss="modal">Great!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Danger/Delete Confirm Modal -->
+                <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-body p-4 text-center">
+                                <div class="mb-3 text-danger"><i class="bi bi-exclamation-triangle-fill fs-1"></i></div>
+                                <h4 class="fw-bold">Are you sure?</h4>
+                                <p class="text-muted">You are about to delete this item permanently. This action cannot
+                                    be undone.</p>
+                                <div class="d-flex gap-3 justify-content-center mt-4">
+                                    <button type="button" class="btn btn-light rounded-pill px-4"
+                                        data-bs-dismiss="modal">No, Cancel</button>
+                                    <button type="button" class="btn btn-danger rounded-pill px-4">Yes, Delete
+                                        it</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Form Modal (Login Template) -->
+                <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header border-bottom-0 p-4 pb-0">
+                                <h4 class="fw-bold mb-0">Sign in to Growigo</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4 pt-4">
+                                <form>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control rounded-3" id="floatingInput"
+                                            placeholder="name@example.com">
+                                        <label for="floatingInput">Email address</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control rounded-3" id="floatingPassword"
+                                            placeholder="Password">
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+                                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign
+                                        up</button>
+                                    <small class="text-muted">By clicking Sign up, you agree to the terms of
+                                        use.</small>
+                                    <hr class="my-4">
+                                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                                    <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit">
+                                        <i class="bi bi-twitter me-2"></i> Sign up with Twitter
+                                    </button>
+                                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                                        <i class="bi bi-facebook me-2"></i> Sign up with Facebook
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Default Base Modal -->
+                <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header border-bottom-0 pt-4 px-4">
+                                <h5 class="modal-title font-bold">Standard Modal</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4">
+                                <p class="text-muted">Standard modal used for general purposes.</p>
+                            </div>
+                            <div class="modal-footer border-top-0 pb-4 px-4">
+                                <button type="button" class="btn btn-light rounded-pill px-4"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary rounded-pill px-4">Action</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Warning Modal -->
+                <div class="modal fade" id="warningModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header bg-warning border-bottom-0 pt-4 px-4">
+                                <h5 class="modal-title font-bold text-dark">Warning Notice</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4 pt-4">
+                                <p class="text-muted">This is an important warning message. Please review before
+                                    proceeding.</p>
+                            </div>
+                            <div class="modal-footer border-top-0 pb-4 px-4">
+                                <button type="button" class="btn btn-light rounded-pill px-4"
+                                    data-bs-dismiss="modal">Ignore</button>
+                                <button type="button" class="btn btn-warning rounded-pill px-4">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Info Modal -->
+                <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header bg-info border-bottom-0 pt-4 px-4">
+                                <h5 class="modal-title font-bold text-white">Information Detail</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4 pt-4">
+                                <p class="text-muted">Here is some more information regarding your current task or the
+                                    system status.</p>
+                            </div>
+                            <div class="modal-footer border-top-0 pb-4 px-4">
+                                <button type="button" class="btn btn-light rounded-pill px-4"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sizes (Small, Centered, etc) -->
+                <div class="modal fade" id="smallModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content border-0 rounded-4 shadow">
+                            <div class="modal-body p-4 text-center">I am a small modal for quick snippets.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="centeredModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 rounded-4 shadow">
+                            <div class="modal-header border-bottom-0">
+                                <h5 class="fw-bold">Centered Modal</h5><button type="button" class="btn-close"
+                                    data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">Vertically centered modal content. Perfect for balanced layouts.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large Modal -->
+                <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header border-bottom-0 pt-4 px-4">
+                                <h5 class="modal-title font-bold">Large Modal Template</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4">
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label">Field 1</label><input type="text"
+                                            class="form-control" placeholder="Large area"></div>
+                                    <div class="col-md-6"><label class="form-label">Field 2</label><input type="text"
+                                            class="form-control" placeholder="More space"></div>
+                                    <div class="col-12"><label class="form-label">Content Area</label>
+                                        <p>I provide significantly more horizontal space for complex grids or
+                                            multi-column forms.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra Large Modal -->
+                <div class="modal fade" id="xlModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content rounded-4 border-0 shadow">
+                            <div class="modal-header border-bottom-0 pt-4 px-4">
+                                <h5 class="modal-title font-bold">Extra Large (XL) Modal</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4">
+                                <div class="p-5 border-dashed rounded-4 text-center text-muted">
+                                    <h4>Maximum Breadth</h4>
+                                    <p>Use me for massive data tables, large image galleries, or complex workspace
+                                        views.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Fullscreen Modal -->
+                <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content border-0">
+                            <div class="modal-header bg-primary text-white pt-4 px-4">
+                                <h5 class="modal-title font-bold">Fullscreen Editor Mode</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-5">
+                                <h3>Full Workspace</h3>
+                                <p>This modal covers the entire viewport.</p>
+                            </div>
+                            <div class="modal-footer pb-4 px-4">
+                                <button type="button" class="btn btn-outline-primary rounded-pill px-4"
+                                    data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="mt-auto px-4 py-3 bg-white border-top">
+                <div class="row">
+                    <div class="col-md-6 text-md-start text-center small text-muted">
+                        <p class="mb-0">© 2026 GrowigoDash.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/extensions/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/main/dashboard.js"></script>
+</body>
+
+</html>

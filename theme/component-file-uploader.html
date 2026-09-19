@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Uploader - GrowigoDash</title>
+    <link rel="shortcut icon" href="assets/images/logo/icon.svg" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-5/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- FilePond -->
+    <link rel="stylesheet" href="assets/extensions/filepond/filepond.css">
+    <link rel="stylesheet" href="assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css">
+    <!-- Perfect Scrollbar -->
+    <link rel="stylesheet" href="assets/extensions/perfect-scrollbar/perfect-scrollbar.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/dashboard.css">
+
+    <style>
+        .filepond--root {
+            margin-bottom: 0;
+        }
+
+        /* Custom FilePond Styles to match theme */
+        .filepond--panel-root {
+            background-color: #F1F5F9;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .filepond--drop-label {
+            color: var(--gd-text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-header">
+                <a href="index.html">
+                    <img src="assets/images/logo/logo.svg" alt="Logo" class="sidebar-logo"><img src="assets/images/logo/icon.svg" alt="Logo" class="sidebar-icon">
+                </a>
+                <div class="sidebar-toggler d-lg-none ms-auto" id="sidebar-close"><i class="bi bi-x fs-2"></i></div>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul class="list-unstyled">
+                    <li class="menu-header">Menu</li>
+                    <li class="sidebar-item">
+                        <a href="index.html" class="sidebar-link">
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">UI Components</li>
+
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-stack"></i>
+                            <span>Components</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-alert.html">Alert</a></li>
+                            <li class="submenu-item"><a href="component-button.html">Button</a></li>
+                            <li class="submenu-item"><a href="component-card.html">Card</a></li>
+                            <li class="submenu-item"><a href="component-carousel.html">Carousel</a></li>
+                            <li class="submenu-item"><a href="component-collapse.html">Collapse</a></li>
+                            <li class="submenu-item"><a href="component-icons.html">Icons</a></li>
+                            <li class="submenu-item"><a href="component-modal.html">Modal</a></li>
+                            <li class="submenu-item"><a href="component-progress.html">Progress</a></li>
+                            <li class="submenu-item"><a href="component-spinner.html">Spinner</a></li>
+                            <li class="submenu-item"><a href="component-toast.html">Toast</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item has-sub">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-box-fill"></i>
+                            <span>Widgets</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-chart.html">Chart</a></li>
+                            <li class="submenu-item"><a href="component-countdown.html">Countdown</a></li>
+                            <li class="submenu-item"><a href="component-map.html">Maps</a></li>
+                            <li class="submenu-item"><a href="component-sweetalert.html">Sweet Alert</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-header">Forms & Tables</li>
+                    <li class="sidebar-item has-sub active">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-input-cursor-text"></i>
+                            <span>Forms</span>
+                        </a>
+                        <ul class="submenu">
+                            <li class="submenu-item"><a href="component-form.html">Form Input</a></li>
+                            <li class="submenu-item"><a href="component-form-layout.html">Form Layout</a></li>
+                            <li class="submenu-item"><a href="component-editor.html">Editor</a></li>
+                            <li class="submenu-item active"><a href="component-file-uploader.html">File Uploader</a>
+                            </li>
+                            <li class="submenu-item"><a href="component-radio.html">Radio & Checkbox</a></li>
+                            <li class="submenu-item"><a href="component-select.html">Select & Select2</a></li>
+                            <li class="submenu-item"><a href="component-daterange.html">Daterange Picker</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="component-table.html" class="sidebar-link">
+                            <i class="bi bi-table"></i>
+                            <span>Basic Table</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="component-datatable.html" class="sidebar-link">
+                            <i class="bi bi-table"></i>
+                            <span>Datatable</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-header">Settings</li>
+                    <li class="sidebar-item"><a href="account-profile.html" class="sidebar-link"><i
+                                    class="bi bi-person-badge-fill"></i><span>Account</span></a></li>
+                    <li class="sidebar-item"><a href="account-settings.html" class="sidebar-link"><i
+                                    class="bi bi-gear-fill"></i><span>Settings</span></a></li>
+                    <li class="sidebar-item"><a href="auth-login.html" class="sidebar-link text-danger"><i
+                                    class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+                
+                                                                                <li class="sidebar-item sidebar-credits-block mt-4 pt-3 border-top">
+                        <div class="sidebar-info px-4">
+                            <h6 class="text-secondary fw-semibold mb-3">Credits & Info</h6>
+                            <div class="d-flex align-items-center mb-2 text-secondary">
+                                <i class="bi bi-brush me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem">Dibuat oleh <a href="https://instagram.com/fazrianbaryf" target="_blank" class="fw-semibold text-decoration-none text-secondary">Fazrian Baryfikri</a></span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 text-secondary">
+                                <i class="bi bi-building me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem">Growigo Indonesia</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3 text-secondary">
+                                <i class="bi bi-shield-check me-2" style="font-size: 1rem"></i>
+                                <span style="font-size: 0.85rem"><a href="copyright.html" class="fw-semibold text-decoration-none text-secondary">Copyright & Legal</a></span>
+                            </div>
+                            <a href="https://saweria.co/fazrianbaryf" target="_blank" class="btn btn-sm btn-outline-primary fw-semibold w-100 mt-2 rounded-3">
+                                <i class="bi bi-heart-fill me-1 text-danger"></i> Donasi
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar-overlay"></div>
+
+        <div id="main">
+            <header class="navbar-custom">
+                <button class="burger-btn d-block"><i class="bi bi-list"></i></button>
+                <div class="navbar-right">
+                    <div class="dropdown">
+                        <div class="user-dropdown" data-bs-toggle="dropdown">
+                            <div class="user-info text-end me-2 d-none d-md-block">
+                                <div class="user-name">Ari Fazrian</div>
+                                <div class="user-role">Administrator</div>
+                            </div>
+                            <img src="https://ui-avatars.com/api/?name=Ari+Fazrian&background=0E1F4D&color=fff" alt="User"
+                                class="user-avatar">
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><a class="dropdown-item" href="account-profile.html"><i class="bi bi-person me-2"></i>
+                                    My Profile</a></li>
+                            <li><a class="dropdown-item" href="account-settings.html"><i class="bi bi-gear me-2"></i>
+                                    Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="auth-login.html"><i
+                                        class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <div id="main-content">
+                <div class="page-heading">
+                    <div class="page-title">File Uploader</div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item">Forms</li>
+                            <li class="breadcrumb-item active" aria-current="page">File Uploader</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <!-- Basic File Uploader -->
+                    <div class="col-12 col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Basic File Uploader</h4>
+                                <p class="text-muted mb-0">FilePond is a JavaScript library that brings silky smooth
+                                    drag'n'drop file uploading.</p>
+                            </div>
+                            <div class="card-body">
+                                <input type="file" class="basic-filepond">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Files -->
+                    <div class="col-12 col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Multiple Files</h4>
+                                <p class="text-muted mb-0">You can also select multiple files.</p>
+                            </div>
+                            <div class="card-body">
+                                <input type="file" class="multiple-files-filepond" multiple>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Image Preview</h4>
+                                <p class="text-muted mb-0">FilePond has a built-in image preview plugin.</p>
+                            </div>
+                            <div class="card-body">
+                                <input type="file" class="image-preview-filepond" multiple data-max-file-size="3MB"
+                                    data-max-files="3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="mt-auto px-4 py-3 bg-white border-top">
+                <div class="row">
+                    <div class="col-md-6 text-md-start text-center small text-muted">
+                        <p class="mb-0">© 2026 GrowigoDash.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/extensions/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- FilePond -->
+    <script src="assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="assets/extensions/filepond/filepond.js"></script>
+
+    <script src="assets/js/main/dashboard.js"></script>
+
+    <script>
+        // Register Image Preview plugin
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
+        // Basic
+        FilePond.create(document.querySelector('.basic-filepond'), {
+            credits: null
+        });
+
+        // Multiple
+        FilePond.create(document.querySelector('.multiple-files-filepond'), {
+            allowImagePreview: false,
+            credits: null
+        });
+
+        // Image Preview
+        FilePond.create(document.querySelector('.image-preview-filepond'), {
+            allowImagePreview: true,
+            credits: null
+        });
+    </script>
+</body>
+
+</html>
+
+
+

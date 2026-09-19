@@ -1,0 +1,68 @@
+
+    .badge-sesi {
+        font-weight: 700 !important;
+        padding: 6px 16px !important;
+        border-radius: 50px !important;
+        display: inline-block !important;
+        font-size: 0.85rem !important;
+        min-width: 85px !important;
+        text-align: center !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+    .badge-sesi-1 {
+        background-color: #0d6efd !important; /* BIRU */
+        color: #ffffff !important;
+    }
+    .badge-sesi-2 {
+        background-color: #ffc107 !important; /* KUNING */
+        color: #000000 !important;
+    }
+    .badge-sesi-3 {
+        background-color: #dc3545 !important; /* MERAH */
+        color: #ffffff !important;
+    }
+    .badge-sesi-default {
+        background-color: #6c757d !important; /* ABU-ABU */
+        color: #ffffff !important;
+    }
+    
+    /* Custom Active Colors (Menggantikan Biru Default Bootstrap) */
+    .nav-pills .nav-link-custom {
+        background-color: #f8f9fa;
+        color: #495057;
+        border: 1px solid #e9ecef;
+        transition: all 0.25s ease;
+    }
+
+    .nav-pills .nav-link-custom:hover {
+        background-color: #e9ecef;
+        color: #212529;
+    }
+
+    /* Tab Semua Sesi (Dark Slate) */
+    .nav-pills .nav-link-custom.active-all {
+        background-color: #212529 !important;
+        color: #ffffff !important;
+        border-color: #212529 !important;
+    }
+
+    /* Tab Sesi 1 (Cyan/Teal) */
+    .nav-pills .nav-link-custom.active-sesi1 {
+        background-color: #0dcaf0 !important;
+        color: #000000 !important;
+        border-color: #0dcaf0 !important;
+    }
+
+    /* Tab Sesi 2 (Amber/Warm) */
+    .nav-pills .nav-link-custom.active-sesi2 {
+        background-color: #ffc107 !important;
+        color: #000000 !important;
+        border-color: #ffc107 !important;
+    }
+
+    /* Tab Sesi 3 (Emerald Green / Grandprize) */
+    .nav-pills .nav-link-custom.active-sesi3 {
+        background-color: #198754 !important;
+        color: #ffffff !important;
+        border-color: #198754 !important;
+    }
