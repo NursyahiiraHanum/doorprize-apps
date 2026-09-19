@@ -151,7 +151,7 @@
                     <div class="card card-custom p-4 p-md-4 bg-white">
                         <div class="text-start mb-4">
                             <h3 class="fw-bold text-dark mb-1">LOGIN</h3>
-                            <p class="text-muted small">Silakan masukkan akun anda untuk mengelola event.</p>
+                            <p class="text-muted small">Welcome back Voyages Team! Please enter your details.</p>
                         </div>
 
                         <!-- Alert Notifications -->
