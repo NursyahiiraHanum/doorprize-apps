@@ -31,7 +31,6 @@
             box-sizing: border-box;
         }
 
-        /* Responsive text sizes for videotron */
         .vt-title {
             font-size: 2.2rem;
             letter-spacing: 1px;

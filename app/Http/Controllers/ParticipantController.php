@@ -159,8 +159,9 @@ class ParticipantController extends Controller
 
     public function exportQr()
     {
-        // Increase time limit for batch PDF & ZIP generation
+        // Naikkan batas waktu dan memori untuk generasi batch PDF & ZIP
         set_time_limit(600);
+        ini_set('memory_limit', '512M');
 
         $participants = Participant::all();
 
@@ -168,15 +169,23 @@ class ParticipantController extends Controller
             return redirect()->back()->with('error', 'Tidak ada data peserta untuk di-export.');
         }
 
-        // Buat folder temporary jika belum ada
+        // 1. Pastikan folder storage/app/public ada
+        $publicStorageDir = storage_path('app/public');
+        if (!file_exists($publicStorageDir)) {
+            mkdir($publicStorageDir, 0755, true);
+        }
+
+        // 2. Buat folder temporary untuk PDF
         $tempDir = storage_path('app/public/temp_pdf_cards');
         if (!file_exists($tempDir)) {
             mkdir($tempDir, 0755, true);
         }
 
         $zipFileName = 'Kartu_QR_Peserta_PDF_' . date('Ymd_His') . '.zip';
-        $zipPath = storage_path('app/public/' . $zipFileName);
+        $zipPath = $publicStorageDir . '/' . $zipFileName;
+        
         $zip = new ZipArchive();
+        $filesAdded = 0;
 
         if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             foreach ($participants as $participant) {
@@ -185,13 +194,13 @@ class ParticipantController extends Controller
                 }
 
                 try {
-                    // Render PDF per peserta dengan desain presisi 1 halaman penuh dari participants-qr.blade.php
+                    // Render PDF per peserta
                     $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('cards.qr-card-pdf', [
                         'p' => $participant,
                     ])->setPaper([0, 0, 420, 210], 'landscape');
 
                     $safeName = \Illuminate\Support\Str::slug($participant->name);
-                    $pdfFileName = "QR-Absen Gathering Chuhatsu Lembang 2026 - " . $participant->npk . '_' . $safeName . '.pdf';
+                    $pdfFileName = "QR-Absen Gathering - " . $participant->npk . '_' . $safeName . '.pdf';
                     $pdfPath = $tempDir . '/' . $pdfFileName;
 
                     // Simpan output PDF sementara
@@ -199,18 +208,26 @@ class ParticipantController extends Controller
 
                     if (file_exists($pdfPath)) {
                         $zip->addFile($pdfPath, $pdfFileName);
+                        $filesAdded++;
                     }
                 } catch (\Exception $e) {
+                    // Catat log jika ada error pada peserta tertentu
+                    \Illuminate\Support\Facades\Log::error("Gagal generate PDF NPK {$participant->npk}: " . $e->getMessage());
                     continue;
                 }
             }
             $zip->close();
         }
 
-        // Hapus file PDF sementara setelah file ZIP selesai
+        // 3. Bersihkan file PDF sementara
         array_map('unlink', glob("$tempDir/*.pdf"));
 
-        // Download ZIP lalu hapus file ZIP dari server
+        // 4. Cek apakah file ZIP berhasil dibuat dan ada isinya
+        if (!file_exists($zipPath) || $filesAdded === 0) {
+            return redirect()->back()->with('error', 'Gagal membuat file ZIP. Pastikan DomPDF/PHP Memory cukup.');
+        }
+
+        // 5. Download ZIP lalu hapus file ZIP dari server
         return response()->download($zipPath, $zipFileName)->deleteFileAfterSend(true);
     }
 }
