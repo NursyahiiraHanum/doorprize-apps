@@ -181,7 +181,7 @@ class ParticipantController extends Controller
             mkdir($tempDir, 0755, true);
         }
 
-        $zipFileName = 'Kartu_QR_Peserta_PDF_' . date('Ymd_His') . '.zip';
+        $zipFileName = 'QR_Peserta_Gathering_PDF_' . date('Ymd_His') . '.zip';
         $zipPath = $publicStorageDir . '/' . $zipFileName;
         
         $zip = new ZipArchive();
@@ -197,7 +197,7 @@ class ParticipantController extends Controller
                     // Render PDF per peserta
                     $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('cards.qr-card-pdf', [
                         'p' => $participant,
-                    ])->setPaper([0, 0, 420, 210], 'landscape');
+                    ])->setPaper([0, 0, 420, 210]);
 
                     $safeName = \Illuminate\Support\Str::slug($participant->name);
                     $pdfFileName = "QR-Absen Gathering - " . $participant->npk . '_' . $safeName . '.pdf';
