@@ -224,7 +224,7 @@
             height: 14px;
             width: auto;
             margin-top: 2px;
-            filter: brightness(0) invert(1);
+            /* filter: brightness(0) invert(1); */
             opacity: 0.9;
         }
 
