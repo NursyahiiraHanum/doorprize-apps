@@ -33,23 +33,62 @@
             table-layout: fixed;
         }
         
-        /* PANEL KIRI (PUTIH) */
+        /* PANEL KIRI (PUTIH - LEBIH LUAS) */
         .ticket-left {
-            width: 285pt;
+            width: 330pt; /* Diperluas agar area putih dominan */
             padding: 10pt 12pt 8pt 12pt;
             vertical-align: top;
             background: #ffffff;
         }
-        
-        /* PANEL KANAN (HITAM/GELAP) */
+
+        /* PANEL KANAN (BIRU NAVY - PORSI SEDIKIT / RAMPING) */
         .ticket-right {
-            width: 135pt;
-            padding: 10pt;
+            width: 90pt; /* Diperkecil agar area biru porsinya sedikit */
+            padding: 8pt 4pt;
             vertical-align: middle;
             text-align: center;
-            background: #111827;
+            background: #0f172a; /* Warna Biru Navy Gelap */
             color: #ffffff;
-            border-left: 1.5pt dashed #374151;
+            border-left: 1.5pt dashed #334155;
+        }
+
+        /* PENYESUAIAN ELEMEN DI DALAM PANEL BIRU (90pt) */
+        .qr-box {
+            background: #ffffff;
+            padding: 4pt;
+            display: inline-block;
+            border-radius: 3pt;
+            margin-bottom: 3pt;
+        }
+        .qr-box img {
+            width: 60pt; /* Disesuaikan agar muat di panel 90pt */
+            height: 60pt;
+            display: block;
+        }
+        .scan-text {
+            font-size: 5.5pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-bottom: 4pt;
+        }
+        .voyages-footer {
+            margin-top: 2pt;
+            text-align: center;
+        }
+        .voyages-label {
+            font-size: 4.5pt;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.5pt;
+            text-transform: uppercase;
+        }
+        .voyages-img, .logo-voyages-img {
+            height: 9pt;
+            width: auto;
+            margin-top: 1pt;
         }
 
         /* HEADER AREA */
