@@ -34,9 +34,9 @@
                         <i class="bi bi-funnel-fill me-1 text-primary"></i>Pilih Filter Sesi:
                     </label>
                     <select class="form-select form-select-lg border-primary fw-bold text-primary shadow-sm" id="session-select" onchange="changeSession()">
-                        <option value="1">Sesi 1 (Semua Peserta Hadir)</option>
-                        <option value="2">Sesi 2 (Karyawan Tetap - 2 Thn Belum Menang)</option>
-                        <option value="3">Sesi 3 (Karyawan Tetap - Belum Menang)</option>
+                        <option value="1">Sesi 1</option>
+                        <option value="2">Sesi 2</option>
+                        <option value="3">Sesi 3</option>
                     </select>
                 </div>
 
@@ -69,7 +69,7 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="p-3 bg-light rounded-3 mb-3 border">
-                        <span class="text-muted small d-block mb-1">Peserta Eligible (Hadir & Sesuai Syarat):</span>
+                        <span class="text-muted small d-block mb-1">Peserta Eligible:</span>
                         <h3 class="fw-bolder text-primary mb-0" id="candidate-count">0 Orang</h3>
                     </div>
 

@@ -68,7 +68,6 @@
         <h1 class="fw-bold mb-1 text-warning vt-title" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
             <i class="bi bi-magic me-2"></i>Doorprize Gathering Chuhatsu
         </h1>
-        <span class="badge bg-warning text-dark vt-badge px-4 py-2 shadow-sm fw-bold" id="fs-session-badge">Sesi 1 (Semua Peserta Hadir)</span>
     </div>
 
     <!-- Zoo Ornaments -->
@@ -80,7 +79,7 @@
     <!-- STATE 1: Animation Rolling (Bola acak) -->
     <div id="animation-container" class="text-center w-100 my-auto" style="z-index: 2;">
         <h2 class="text-warning text-uppercase fw-bold mb-4 vt-status" id="rolling-status" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.6);">
-            🐾 MENUNGGU INSTRUKSI OPERATOR 🐾
+            🐾 Bersiaplah! Doorprize Menarik Menanti Anda... 🐾
         </h2>
         
         <div id="single-ball-container" class="my-4">
