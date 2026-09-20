@@ -7,7 +7,7 @@
     @if(isset($participants) && $participants->count() == 1)
         BARCODE QR ABSEN | CHUHATSU GATHERING - {{ $participants->first()->npk }} - {{ $participants->first()->name }}
     @else
-        BARCODE QR ABSEN | CHUHATSU GATHERING  - SEMUA QR PESERTA
+        BARCODE QR ABSEN | CHUHATSU GATHERING - SEMUA QR PESERTA
     @endif
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,82 +16,73 @@
     <style>
         body {
             background-color: #eef2f7;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
         }
 
-        /* Desain Card Horizontal / Kesamping */
+        /* Container Kartu Tiket Horizontal (14cm x 7.2cm) */
         .ticket-card {
             width: 14cm;
             height: 7.2cm;
-            border: 2px solid #1e293b;
             border-radius: 12px;
             background: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            display: flex;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             page-break-inside: avoid;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        /* Strip Event Header */
-        .ticket-header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-            color: #ffffff;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 48px;
-        }
-
-        .event-title {
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #f8fafc;
-        }
-
-        .logo-voyages {
-            height: 32px;
-            width: auto;
-            object-fit: contain;
-            background: #ffffff;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        /* Body Layout Flex Kesamping */
-        .ticket-body {
-            display: flex;
-            height: calc(100% - 48px);
-            padding: 12px 15px;
-        }
-
-        /* Sisi Kiri: Informasi Peserta */
-        .info-section {
+        /* Panel Kiri (Putih Dominan) */
+        .ticket-left {
             flex: 1;
-            padding-right: 12px;
-            border-right: 2px dashed #cbd5e1;
+            padding: 16px 18px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background: #ffffff;
+        }
+
+        .event-tag {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #159C33;
+            margin-bottom: 2px;
         }
 
         .participant-name {
-            font-size: 16px;
-            font-weight: 800;
+            font-size: 18px;
+            font-weight: 900;
             color: #0f172a;
-            line-height: 1.2;
-            margin-bottom: 4px;
             text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 2px;
+        }
+
+        .event-sub {
+            font-size: 10px;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        /* Grid Data Informasi */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 10px;
         }
 
         .info-label {
-            font-size: 10px;
-            color: #64748b;
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #94a3b8;
             text-transform: uppercase;
-            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: block;
         }
 
         .info-value {
@@ -100,22 +91,88 @@
             color: #1e293b;
         }
 
-        /* Sisi Kanan: QR Code */
-        .qr-section {
-            width: 200px;
+        /* Footer Panel Kiri (NPK & Logo Chuhatsu) */
+        .ticket-footer-left {
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .npk-badge {
+            font-size: 13px;
+            font-weight: 900;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-chuhatsu {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Panel Kanan (Biru Navy Gelap & Ramping) */
+        .ticket-right {
+            width: 3.4cm;
+            background: #0f172a;
+            color: #ffffff;
+            border-left: 2px dashed #334155;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-left: 12px;
+            padding: 10px 6px;
+            text-align: center;
         }
 
-        .qr-code svg, .qr-code img {
-            width: 151px !important;
-            height: 151px !important;
+        .qr-container {
+            background: #ffffff;
+            padding: 5px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            display: inline-block;
         }
 
-        /* Mode Cetak Print PDF/Kertas */
+        .qr-container svg, .qr-container img {
+            width: 90px !important;
+            height: 90px !important;
+            display: block;
+        }
+
+        .scan-text {
+            font-size: 7.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+            opacity: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .voyages-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .voyages-label {
+            font-size: 6.5px;
+            font-weight: 800;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo-voyages {
+            height: 14px;
+            width: auto;
+            margin-top: 2px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Pengaturan Cetak Print / PDF */
         @media print {
             .no-print {
                 display: none !important;
@@ -125,7 +182,7 @@
             }
             .ticket-card {
                 box-shadow: none !important;
-                border: 1.5px solid #000000 !important;
+                border: 1px solid #000000 !important;
             }
         }
     </style>
@@ -147,72 +204,61 @@
         </div>
     </div>
 
-    <!-- Grid Kartu Peserta Horizontal -->
+    <!-- Grid Kartu Peserta Ticket Style -->
     <div class="row g-3 justify-content-start">
         @foreach($participants as $p)
             <div class="col-auto">
                 <div class="ticket-card">
-                    <!-- Header Kartu (Judul Event & Logo Chuhatsu) -->
-                    <div class="ticket-header">
+                    
+                    <!-- PANEL KIRI (PUTIH - LUAS) -->
+                    <div class="ticket-left">
                         <div>
-                            <div class="event-title">FAMILY GATHERING</div>
-                            <small style="font-size: 9px; opacity: 0.8; display: block; margin-top: -2px;">CHUHATSU LEMBANG PARK ZOO 2026</small>
+                            <div class="event-tag">CHUHATSU — FAMILY GATHERING 2026</div>
+                            <div class="participant-name">{{ $p->name }}</div>
+                            <div class="event-sub">LEMBANG PARK & ZOO</div>
+
+                            <div class="info-grid">
+                                <div>
+                                    <span class="info-label">Kendaraan</span>
+                                    <span class="info-value">{{ strtoupper($p->kendaraan ?? '-') }}</span>
+                                </div>
+                                <div>
+                                    <span class="info-label">Tanggungan</span>
+                                    <span class="info-value">{{ $p->tanggungan }} Orang</span>
+                                </div>
+                                <div style="grid-column: span 2; margin-top: 2px;">
+                                    <span class="info-label">Total Tiket Zoo</span>
+                                    <span class="info-value text-success">{{ $p->total_tiket }} Tiket Masuk</span>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <!-- Logo Chuhatsu -->
-                        <div style="background: #ffffff; padding: 2px 6px; border-radius: 4px; display: inline-block;">
+
+                        <div class="ticket-footer-left">
+                            <div>
+                                <span class="info-label">NOMOR NPK PESERTA</span>
+                                <span class="npk-badge">{{ $p->npk }}</span>
+                            </div>
                             <img src="{{ asset('theme/assets/images/logo-chuhatsu.png') }}" 
                                  alt="Chuhatsu Logo" 
-                                 style="height: 24px; width: auto; display: block;">
+                                 class="logo-chuhatsu">
                         </div>
                     </div>
 
-                    <!-- Body Kartu -->
-                    <div class="ticket-body">
-                        <!-- Informasi Peserta (Kiri) -->
-                        <div class="info-section">
-                            <div>
-                                <div class="info-label">Nama Karyawan</div>
-                                <div class="participant-name">{{ $p->name }}</div>
-                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25" style="font-size: 11px;">
-                                    NPK: {{ $p->npk }}
-                                </span>
-                            </div>
-
-                            <div class="row g-1 mt-1">
-                                <div class="col-6">
-                                    <div class="info-label">Kendaraan</div>
-                                    <div class="info-value">{{ $p->kendaraan ?? '-' }}</div>
-                                </div>
-                            </div>
-
-                            <div class="pt-2 border-top mt-1 d-flex justify-content-between align-items-center">
-                                <div>
-                                    <div class="info-label">Tanggungan</div>
-                                    <div class="info-value">{{ $p->tanggungan }} Orang</div>
-                                </div>
-                                <div class="text-end">
-                                    <div class="info-label">Tiket Zoo</div>
-                                    <div class="badge bg-success fs-6 px-2 py-1">{{ $p->total_tiket }} Tiket</div>
-                                </div>
-                            </div>
+                    <!-- PANEL KANAN (BIRU NAVY - RAMPING) -->
+                    <div class="ticket-right">
+                        <div class="qr-container">
+                            {!! QrCode::size(100)->generate($p->qr_code ?? $p->npk) !!}
                         </div>
+                        <div class="scan-text">SCAN UNTUK ABSEN</div>
 
-                        <!-- QR Code (Kanan Kesamping) -->
-                        <div class="qr-section">
-                            <div class="qr-code">
-                                {!! QrCode::size(105)->generate($p->qr_code ?? $p->npk) !!}
-                            </div>
-                            <small class="fw-bold text-muted mt-1" style="font-size: 9px; letter-spacing: 0.5px;">
-                                SCAN UNTUK ABSEN
-                            </small>
-
-                            <div class="text-center mt-2">
-                                <small class="text-muted fw-bold d-block" style="font-size: 8px; letter-spacing: 0.5px;">EVENT BY</small>
-                                <img src="{{ asset('theme/assets/images/logo/logo-voyages.png') }}" style="height: 18px; width: auto; margin-top: 1px;" alt="Voyages Logo">
-                            </div>
+                        <div class="voyages-brand">
+                            <span class="voyages-label">EVENT BY</span>
+                            <img src="{{ asset('theme/assets/images/logo/logo-voyages.png') }}" 
+                                 alt="Voyages Logo" 
+                                 class="logo-voyages">
                         </div>
                     </div>
+
                 </div>
             </div>
         @endforeach
