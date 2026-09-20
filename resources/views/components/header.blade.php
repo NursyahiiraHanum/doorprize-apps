@@ -3,7 +3,7 @@
     <title>Dashboard - Voyages Doorprize System</title>
     <link
       rel="shortcut icon"
-      href="{{asset('theme/assets/images/logo/icon.svg')}}"
+      href="{{asset('theme/assets/images/logo/logo-voyages.svg')}}"
       type="image/x-icon" />
 
     <!-- Bootstrap CSS -->
