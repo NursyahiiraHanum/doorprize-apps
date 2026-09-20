@@ -29,7 +29,7 @@
         }
         .ticket-table {
             width: 100%;
-            height: 100%;
+            height: 206pt
             border-collapse: collapse;
             table-layout: fixed;
         }
