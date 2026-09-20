@@ -2,11 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Kupon QR - {{ $p->npk }} - {{ $p->name }}</title>
+    <title>Tiket Family Gathering - {{ $p->npk }} - {{ $p->name }}</title>
     <style>
         @page {
             margin: 0;
-            size: 420pt 210pt;
+            size: 420pt 210pt; /* Landscape Tiket Standard */
         }
         * {
             box-sizing: border-box;
@@ -21,209 +21,245 @@
             padding: 0;
             background-color: #ffffff;
         }
-        .card-table {
+
+        /* CARD MAIN CONTAINER */
+        .ticket-card {
             width: 100%;
+            height: 100%;
             border-collapse: collapse;
-            border: 1.5pt solid #0f172a;
+            padding: 10pt 12pt 8pt 12pt;
         }
-        .header-td {
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 5pt 10pt;
-            height: 32pt;
-        }
-        .event-title {
-            font-size: 11pt;
+
+        /* HEADER SECTION */
+        .event-header-title {
+            font-size: 8.5pt;
             font-weight: bold;
-            color: #ffffff;
-            text-transform: uppercase;
+            color: #047857; /* Emerald Green khas tiket */
             letter-spacing: 0.5pt;
+            text-transform: uppercase;
         }
-        .event-subtitle {
+        .event-header-subtitle {
             font-size: 7pt;
-            color: #cbd5e1;
+            font-weight: bold;
+            color: #334155;
             margin-top: 1pt;
         }
-        .company-badge {
-            background-color: #ffffff;
+
+        /* LEFT CONTENT COLUMN */
+        .left-col {
+            width: 63%;
+            vertical-align: top;
+            padding-right: 10pt;
+        }
+
+        .participant-name {
+            font-size: 15pt;
+            font-weight: bold;
             color: #0f172a;
+            text-transform: uppercase;
+            margin-top: 6pt;
+            line-height: 1.1;
+        }
+
+        .category-subtitle {
             font-size: 8pt;
             font-weight: bold;
-            padding: 2pt 6pt;
-            border-radius: 3pt;
+            color: #047857;
+            margin-top: 2pt;
+            margin-bottom: 6pt;
         }
-        .info-td {
-            width: 62%;
-            vertical-align: top;
-            padding: 8pt 10pt;
-            border-right: 1.5pt dashed #cbd5e1;
+
+        /* DETAILS TABLE */
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2pt;
         }
-        .qr-td {
-            width: 38%;
-            vertical-align: middle;
-            text-align: center;
-            padding: 6pt;
-        }
-        .info-label {
-            font-size: 6.5pt;
+        .detail-label {
+            font-size: 6pt;
             color: #64748b;
             text-transform: uppercase;
             font-weight: bold;
         }
-        .participant-name {
-            font-size: 12pt;
-            font-weight: bold;
-            color: #0f172a;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-top: 2pt;
-            margin-bottom: 3pt;
-        }
-        .npk-badge {
-            display: inline-block;
-            background-color: #e0f2fe;
-            color: #0369a1;
-            border: 1pt solid #bae6fd;
-            font-size: 8pt;
-            font-weight: bold;
-            padding: 1.5pt 5pt;
-            border-radius: 3pt;
-            margin-bottom: 6pt;
-        }
-        .meta-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .meta-val {
-            font-size: 9pt;
+        .detail-val {
+            font-size: 8.5pt;
             font-weight: bold;
             color: #1e293b;
             margin-top: 1pt;
+            margin-bottom: 4pt;
         }
-        .footer-table {
+
+        /* HIGHLIGHT BOX NPK (Meniru Box Nomor BIB) */
+        .npk-box {
+            background-color: #f1f5f9;
+            border: 1pt solid #cbd5e1;
+            border-radius: 4pt;
+            padding: 4pt 8pt;
+            margin-top: 4pt;
+            display: inline-block;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 6pt;
-            padding-top: 4pt;
-            border-top: 1pt solid #e2e8f0;
         }
-        .ticket-badge {
-            background-color: #dcfce7;
-            color: #15803d;
-            border: 1pt solid #bbf7d0;
-            font-size: 8.5pt;
-            font-weight: bold;
-            padding: 2pt 6pt;
-            border-radius: 3pt;
-        }
-        .scan-text {
+        .npk-box-label {
             font-size: 6.5pt;
             font-weight: bold;
-            color: #64748b;
-            margin-top: 3pt;
+            color: #047857;
+            text-transform: uppercase;
             letter-spacing: 0.5pt;
         }
-        .voyages-footer {
-            margin-top: 4pt;
-            text-align: center;
+        .npk-box-val {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #0f172a;
+            letter-spacing: 1pt;
+            margin-top: 1pt;
         }
-        .voyages-label {
-            font-size: 5.5pt;
+
+        /* RIGHT CONTENT COLUMN (LOGOS & QR) */
+        .right-col {
+            width: 37%;
+            vertical-align: top;
+            text-align: center;
+            border-left: 1pt dashed #cbd5e1;
+            padding-left: 8pt;
+        }
+
+        .logo-chuhatsu-img {
+            max-height: 24pt;
+            width: auto;
+            max-width: 110pt;
+        }
+
+        .qr-image {
+            width: 82pt;
+            height: 82pt;
+            margin-top: 4pt;
+        }
+
+        .scan-text {
+            font-size: 6pt;
+            font-weight: bold;
+            color: #64748b;
+            letter-spacing: 0.5pt;
+            margin-top: 2pt;
+        }
+
+        /* EVENT BY VOYAGES FOOTER */
+        .event-by-container {
+            margin-top: 5pt;
+        }
+        .event-by-label {
+            font-size: 5pt;
             color: #94a3b8;
             font-weight: bold;
             letter-spacing: 0.5pt;
             text-transform: uppercase;
         }
-        .voyages-img {
-            height: 13pt;
+        .logo-voyages-img {
+            max-height: 14pt;
             width: auto;
             margin-top: 1pt;
+        }
+
+        /* BOTTOM DISCLAIMER FOOTER */
+        .bottom-disclaimer {
+            border-top: 0.8pt solid #e2e8f0;
+            padding-top: 4pt;
+            margin-top: 4pt;
+            font-size: 5.5pt;
+            color: #64748b;
+            line-height: 1.2;
         }
     </style>
 </head>
 <body>
 
 @php
+    // Encode Logo Chuhatsu
     $chuhatsuPath = public_path('theme/assets/images/logo-chuhatsu.png');
     $chuhatsuBase64 = file_exists($chuhatsuPath) ? base64_encode(file_get_contents($chuhatsuPath)) : '';
 
+    // Encode Logo Voyages
     $voyagesPath = public_path('theme/assets/images/logo/logo-voyages.png');
     $voyagesBase64 = file_exists($voyagesPath) ? base64_encode(file_get_contents($voyagesPath)) : '';
 
+    // Generate QR PNG Base64
     $qrCodeContent = $p->qr_code ?? $p->npk;
-    // Format QR diubah ke PNG agar tidak merusak layout DomPDF
-    $qrPng = SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(90)->margin(0)->generate($qrCodeContent);
+    $qrPng = SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(100)->margin(0)->generate($qrCodeContent);
     $qrBase64 = base64_encode($qrPng);
 @endphp
 
-<table class="card-table" cellpadding="0" cellspacing="0">
-    <!-- Row 1: Header Bar -->
+<table class="ticket-card" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="header-td" colspan="2">
-            <table style="width: 100%; border-collapse: collapse;">
+        <!-- KOLOM KIRI: DETAIL PESERTA & EVENT -->
+        <td class="left-col">
+            <div class="event-header-title">CHUHATSU OFFICIAL TICKET 2026</div>
+            <div class="event-header-subtitle">FAMILY GATHERING - LEMBANG PARK & ZOO</div>
+
+            <!-- NAMA KARYAWAN -->
+            <div class="participant-name">{{ $p->name }}</div>
+            <div class="category-subtitle">
+                {{ strtoupper($p->status_karyawan ?? 'KARYAWAN') }} 
+                @if(!empty($p->gender)) ({{ strtoupper($p->gender) }}) @endif
+            </div>
+
+            <!-- TABLE DETAIL DATA -->
+            <table class="details-table" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td style="vertical-align: middle;">
-                        <div class="event-title">FAMILY GATHERING</div>
-                        <div class="event-subtitle">CHUHATSU LEMBANG PARK ZOO 2026</div>
+                    <td width="50%" style="vertical-align: top;">
+                        <div class="detail-label">KENDARAAN</div>
+                        <div class="detail-val">{{ strtoupper($p->kendaraan ?? '-') }}</div>
                     </td>
-                    <td style="text-align: right; vertical-align: middle;">
-                        @if($chuhatsuBase64)
-                            <div style="background-color: #ffffff; padding: 2pt 5pt; border-radius: 3pt; display: inline-block;">
-                                <img src="data:image/png;base64,{{ $chuhatsuBase64 }}" style="height: 15pt; width: auto; display: block;" alt="Chuhatsu Logo">
-                            </div>
-                        @else
-                            <span class="company-badge">CHUHATSU</span>
-                        @endif
+                    <td width="50%" style="vertical-align: top;">
+                        <div class="detail-label">TANGGUNGAN</div>
+                        <div class="detail-val">{{ $p->tanggungan ?? 0 }} Orang</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="vertical-align: top; padding-top: 1pt;">
+                        <div class="detail-label">TOTAL TIKET ZOO</div>
+                        <div class="detail-val" style="color: #047857;">{{ $p->total_tiket ?? 1 }} Tiket Masuk</div>
                     </td>
                 </tr>
             </table>
+
+            <!-- KOTAK HIGHLIGHT NOMOR NPK PESERTA -->
+            <div class="npk-box">
+                <div class="npk-box-label">NOMOR NPK PESERTA</div>
+                <div class="npk-box-val">{{ $p->npk }}</div>
+            </div>
+        </td>
+
+        <!-- KOLOM KANAN: LOGO CHUHATSU, QR CODE, & LOGO VOYAGES -->
+        <td class="right-col">
+            <!-- LOGO CHUHATSU (FAMILY GATHERING LOGO) -->
+            @if($chuhatsuBase64)
+                <img src="data:image/png;base64,{{ $chuhatsuBase64 }}" class="logo-chuhatsu-img" alt="Chuhatsu Logo">
+            @else
+                <div style="font-weight: bold; font-size: 11pt; color: #047857;">CHUHATSU</div>
+            @endif
+
+            <br>
+
+            <!-- QR CODE -->
+            <img src="data:image/png;base64,{{ $qrBase64 }}" class="qr-image" alt="QR Code"><br>
+            <div class="scan-text">SCAN FOR CHECK-IN</div>
+
+            <!-- LOGO VOYAGES (EVENT BY LOGO) -->
+            @if($voyagesBase64)
+                <div class="event-by-container">
+                    <div class="event-by-label">EVENT BY</div>
+                    <img src="data:image/png;base64,{{ $voyagesBase64 }}" class="logo-voyages-img" alt="Voyages Logo">
+                </div>
+            @endif
         </td>
     </tr>
 
-    <!-- Row 2: Card Content -->
+    <!-- FOOTER DISCLAIMER (PALING BAWAH) -->
     <tr>
-        <!-- Info Left Column -->
-        <td class="info-td">
-            <div class="info-label">NAMA KARYAWAN</div>
-            <div class="participant-name">{{ $p->name }}</div>
-            <div class="npk-badge">NPK: {{ $p->npk }}</div>
-
-            <table class="meta-table">
-                <tr>
-                    <td style="width: 50%; vertical-align: top;">
-                        <div class="info-label">KENDARAAN</div>
-                        <div class="meta-val">{{ $p->kendaraan ?? '-' }}</div>
-                    </td>
-                    <td style="width: 50%; vertical-align: top;">
-                        <div class="info-label">TANGGUNGAN</div>
-                        <div class="meta-val">{{ $p->tanggungan }} Orang</div>
-                    </td>
-                </tr>
-            </table>
-
-            <table class="footer-table">
-                <tr>
-                    <td style="vertical-align: middle;">
-                        <div class="info-label">TOTAL TIKET ZOO</div>
-                    </td>
-                    <td style="text-align: right; vertical-align: middle;">
-                        <span class="ticket-badge">{{ $p->total_tiket }} Tiket</span>
-                    </td>
-                </tr>
-            </table>
-        </td>
-
-        <!-- QR Right Column -->
-        <td class="qr-td">
-            <img src="data:image/png;base64,{{ $qrBase64 }}" style="width: 80pt; height: 80pt; display: inline-block;" alt="QR Code"><br>
-            <div class="scan-text">SCAN UNTUK ABSENSI</div>
-
-            @if($voyagesBase64)
-                <div class="voyages-footer">
-                    <span class="voyages-label">EVENT BY</span><br>
-                    <img src="data:image/png;base64,{{ $voyagesBase64 }}" class="voyages-img" alt="Voyages Logo">
-                </div>
-            @endif
+        <td colspan="2" style="vertical-align: bottom;">
+            <div class="bottom-disclaimer">
+                * Harap bawa tiket ini (cetak/digital) saat registrasi kehadiran & penukaran tiket Lembang Park & Zoo. Tiket berlaku sebagai bukti registrasi resmi Anda.
+            </div>
         </td>
     </tr>
 </table>
