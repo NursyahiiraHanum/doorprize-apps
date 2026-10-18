@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 @push('styles')
     <link rel="stylesheet" href="{{ asset('theme/assets/css/winners.css') }}">
 @endpush
@@ -138,68 +139,16 @@
                 @if(request('sesi'))
                     <input type="hidden" name="sesi" value="{{ request('sesi') }}">
                 @endif
-
-                <!-- <div class="input-group">
-                    <input type="text" 
-                        name="search" 
-                        class="form-control bg-light border-end-0" 
-                        placeholder="Cari NPK / Nama..." 
-                        value="{{ request('search') }}">
-                    
-                    <button type="submit" class="btn btn-dark" title="Cari">
-                        <i class="bi bi-search"></i>
-                    </button>
-                    
-                    @if(request()->filled('search'))
-                        <a href="{{ route('winners.index', request()->only('sesi')) }}" 
-                        class="btn btn-outline-secondary" 
-                        title="Reset Search">
-                            <i class="bi bi-x-lg"></i>
-                        </a>
-                    @endif
-                </div> -->
             </form>
         </div>
 
         <!-- Nav Pills Tab Sesi -->
         @php
             $tabs = [
-                'all' => [
-                    'label'          => 'Semua Sesi',
-                    'icon'           => 'bi-grid-fill',
-                    'active_class'   => 'active-all',
-                    'icon_active'    => '',
-                    'icon_inactive'  => '',
-                    'badge_active'   => 'bg-white text-dark',
-                    'badge_inactive' => 'bg-secondary bg-opacity-20 text-dark',
-                ],
-                '1' => [
-                    'label'          => 'Sesi 1',
-                    'icon'           => 'bi-1-circle-fill',
-                    'active_class'   => 'active-sesi1',
-                    'icon_active'    => 'text-dark',
-                    'icon_inactive'  => 'text-info',
-                    'badge_active'   => 'bg-dark text-white',
-                    'badge_inactive' => 'bg-info bg-opacity-20 text-info',
-                ],
-                '2' => [
-                    'label'          => 'Sesi 2',
-                    'icon'           => 'bi-2-circle-fill',
-                    'active_class'   => 'active-sesi2',
-                    'icon_active'    => 'text-dark',
-                    'icon_inactive'  => 'text-warning',
-                    'badge_active'   => 'bg-dark text-white',
-                    'badge_inactive' => 'bg-warning bg-opacity-20 text-warning',
-                ],
-                '3' => [
-                    'label'          => 'Sesi 3',
-                    'icon'           => 'bi-3-circle-fill',
-                    'active_class'   => 'active-sesi3',
-                    'icon_active'    => 'text-white',
-                    'icon_inactive'  => 'text-success',
-                    'badge_active'   => 'bg-white text-success',
-                    'badge_inactive' => 'bg-success bg-opacity-20 text-success',
-                ],
+                'all' => ['label' => 'Semua Sesi', 'icon' => 'bi-grid-fill', 'active_class' => 'active-all', 'icon_active' => '', 'icon_inactive' => '', 'badge_active' => 'bg-white text-dark', 'badge_inactive' => 'bg-secondary bg-opacity-20 text-dark'],
+                '1' => ['label' => 'Sesi 1', 'icon' => 'bi-1-circle-fill', 'active_class' => 'active-sesi1', 'icon_active' => 'text-dark', 'icon_inactive' => 'text-info', 'badge_active' => 'bg-dark text-white', 'badge_inactive' => 'bg-info bg-opacity-20 text-info'],
+                '2' => ['label' => 'Sesi 2', 'icon' => 'bi-2-circle-fill', 'active_class' => 'active-sesi2', 'icon_active' => 'text-dark', 'icon_inactive' => 'text-warning', 'badge_active' => 'bg-dark text-white', 'badge_inactive' => 'bg-warning bg-opacity-20 text-warning'],
+                '3' => ['label' => 'Sesi 3', 'icon' => 'bi-3-circle-fill', 'active_class' => 'active-sesi3', 'icon_active' => 'text-white', 'icon_inactive' => 'text-success', 'badge_active' => 'bg-white text-success', 'badge_inactive' => 'bg-success bg-opacity-20 text-success'],
             ];
         @endphp
 
@@ -207,18 +156,14 @@
             @foreach($tabs as $key => $tab)
                 @php
                     $isActive = $activeTab === (string) $key;
-                    
-                    // Menjaga parameter search tapi mereset page saat pindah tab
                     $queryParams = request()->except(['sesi', 'page']);
                     if ($key !== 'all') {
                         $queryParams['sesi'] = $key;
                     }
                     $tabUrl = route('winners.index', $queryParams);
                 @endphp
-
                 <li class="nav-item">
-                    <a class="nav-link nav-link-custom fw-semibold px-3 {{ $isActive ? $tab['active_class'] : '' }}" 
-                    href="{{ $tabUrl }}">
+                    <a class="nav-link nav-link-custom fw-semibold px-3 {{ $isActive ? $tab['active_class'] : '' }}" href="{{ $tabUrl }}">
                         <i class="bi {{ $tab['icon'] }} me-1 {{ $isActive ? $tab['icon_active'] : $tab['icon_inactive'] }}"></i> 
                         {{ $tab['label'] }} 
                         <span class="badge {{ $isActive ? $tab['badge_active'] : $tab['badge_inactive'] }} ms-1">
@@ -230,7 +175,7 @@
         </ul>
     </div>
 
-    <!-- Table Body (Kolom Disesuaikan: No, NPK, Nama, Hadiah, Sesi Undian) -->
+    <!-- Table Body -->
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
@@ -239,6 +184,7 @@
                         <th class="text-center py-3 px-3" style="width: 60px;">No</th>
                         <th class="py-3 px-3" style="width: 140px;">NPK</th>
                         <th class="py-3 px-3">Nama</th>
+                        <th class="py-3 px-3" style="width: 150px;">Plant</th> <!-- KOLOM BARU -->
                         <th class="py-3 px-3">Hadiah</th>
                         <th class="text-center py-3 px-3" style="width: 130px;">Sesi Undian</th>
                     </tr>
@@ -248,7 +194,7 @@
                         @php
                             if (!is_object($winner)) { continue; }
 
-                            $prizeName    = $winner->prize->name ?? 'Hadiah Doorprize';
+                            $prizeName = $winner->prize->name ?? 'Hadiah Doorprize';
                             $isGrandPrize = str_contains(strtolower($prizeName), 'grand prize');
                             
                             $rawSesi = $winner->prize->sesi ?? $winner->sesi ?? 1;
@@ -267,9 +213,7 @@
                         @endphp
                         <tr>
                             <!-- 1. Nomor Urut -->
-                            <td class="text-center fw-semibold text-muted px-3">
-                                {{ $rowNumber }}
-                            </td>
+                            <td class="text-center fw-semibold text-muted px-3">{{ $rowNumber }}</td>
 
                             <!-- 2. NPK -->
                             <td class="px-3 py-3">
@@ -279,11 +223,16 @@
                             </td>
 
                             <!-- 3. Nama Pemenang -->
-                            <td class="px-3 py-3 fw-bold text-dark">
-                                {{ $winner->participant->name ?? 'N/A' }}
+                            <td class="px-3 py-3 fw-bold text-dark">{{ $winner->participant->name ?? 'N/A' }}</td>
+
+                            <!-- 4. Plant (KOLOM BARU) -->
+                            <td class="px-3 py-3">
+                                <span class="badge bg-secondary bg-opacity-10 text-dark fw-semibold">
+                                    {{ $winner->participant->plant ?? 'N/A' }}
+                                </span>
                             </td>
 
-                            <!-- 4. Hadiah -->
+                            <!-- 5. Hadiah -->
                             <td class="px-3 py-3">
                                 <div class="d-flex align-items-center">
                                     <i class="bi {{ $isGrandPrize ? 'bi-award-fill text-warning fs-5' : 'bi-gift-fill text-primary fs-6' }} me-2"></i>
@@ -293,7 +242,7 @@
                                 </div>
                             </td>
 
-                            <!-- 5. Sesi Undian -->
+                            <!-- 6. Sesi Undian -->
                             <td class="text-center px-3 py-3">
                                 <span class="badge {{ $sesiBadgeClass }} bg-opacity-10 rounded-pill px-3 py-2 fw-bold">
                                     Sesi {{ $sesiNum }}
@@ -302,7 +251,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-muted">
+                            <td colspan="6" class="text-center py-5 text-muted"> <!-- Colspan diubah menjadi 6 -->
                                 <div class="py-4">
                                     <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary opacity-50"></i>
                                     <h6 class="fw-bold mb-1">Belum Ada Data Pemenang
@@ -365,4 +314,5 @@
         </div>
     </div>
 </div>
+
 @endsection

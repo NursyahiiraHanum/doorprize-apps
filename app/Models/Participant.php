@@ -14,13 +14,19 @@ class Participant extends Model
     protected $fillable = [
         'npk',
         'name',
+        'birthdate',
+        'join_date',
         'tanggungan',
         'total_tiket',
+        'plant',
         'status_karyawan',
-        'gender',
         'kendaraan',
         'tahun_terakhir_menang',
         'qr_code',
+    ];
+
+    protected $casts = [
+        'birthdate' => 'date',
     ];
 
     /**

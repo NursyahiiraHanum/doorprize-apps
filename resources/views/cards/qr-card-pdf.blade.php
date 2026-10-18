@@ -36,116 +36,128 @@
             table-layout: fixed;
         }
 
-        /* AKSEN TOP BAR */
+        /* AKSEN TOP BAR GRADIENT */
         .top-accent-bar {
-            height: 4pt;
-            background-color: #159C33;
+            height: 5pt;
+            background-color: #10b981;
         }
 
-        /* PANEL KIRI (PUTIH) */
+        /* PANEL KIRI (UTAMA) */
         .ticket-left {
-            width: 320pt;
-            padding: 8pt 12pt 6pt 12pt;
+            width: 310pt;
+            padding: 8pt 10pt 6pt 10pt;
             vertical-align: top;
             background: #ffffff;
+        }
+
+        .header-table {
+            width: 100%;
+            margin-bottom: 2pt;
+            border-collapse: collapse;
         }
 
         .event-label {
             font-size: 6.5pt;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1pt;
-            color: #159C33;
-            margin-bottom: 1pt;
+            letter-spacing: 0.8pt;
+            color: #059669;
+        }
+
+        .event-sub {
+            font-size: 6.5pt;
+            font-weight: bold;
+            color: #64748b;
         }
 
         .participant-name {
-            font-size: 14pt;
+            font-size: 13pt;
             font-weight: bold;
             color: #0f172a;
             text-transform: uppercase;
             line-height: 1.1;
-            margin-bottom: 1pt;
+            margin-bottom: 3pt;
+            word-wrap: break-word;
         }
 
-        .event-sub {
-            font-size: 7pt;
-            font-weight: bold;
-            color: #64748b;
-            margin-bottom: 5pt;
-        }
-
-        /* BOX INFORMASI */
+        /* BOX INFORMASI GRID */
         .info-box-table {
             width: 100%;
             background-color: #f8fafc;
-            border: 0.8pt solid #e2e8f0;
+            border: 0.8pt solid #cbd5e1;
             border-radius: 4pt;
             border-collapse: collapse;
+            margin-bottom: 4pt;
         }
 
         .info-cell {
-            padding: 3pt 5pt;
+            padding: 2.5pt 4pt;
             vertical-align: top;
+            border-bottom: 0.5pt solid #e2e8f0;
+        }
+
+        .info-cell-last {
+            border-bottom: none;
         }
 
         .info-label {
-            font-size: 5pt;
+            font-size: 4.8pt;
             font-weight: bold;
-            color: #94a3b8;
+            color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.5pt;
+            letter-spacing: 0.4pt;
         }
 
         .info-value {
-            font-size: 8pt;
+            font-size: 7.5pt;
             font-weight: bold;
-            color: #1e293b;
+            color: #0f172a;
+            white-space: nowrap;
         }
 
         .ticket-badge {
-            background-color: #e6f4ea;
-            color: #159C33;
-            font-size: 7.5pt;
+            background-color: #d1fae5;
+            color: #047857;
+            font-size: 7pt;
             font-weight: bold;
-            padding: 1.5pt 4pt;
+            padding: 1pt 4pt;
             border-radius: 2pt;
             display: inline-block;
         }
 
-        /* FOOTER KIRI (NPK & LOGO) */
+        .npk-badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 8pt;
+            font-weight: bold;
+            padding: 1.5pt 5pt;
+            border-radius: 2pt;
+            display: inline-block;
+        }
+
+        /* FOOTER KIRI */
         .footer-left-table {
             width: 100%;
             border-top: 0.8pt dashed #cbd5e1;
-            padding-top: 4pt;
-            margin-top: 4pt;
+            padding-top: 3pt;
             border-collapse: collapse;
         }
 
-        .npk-number {
-            font-size: 12.5pt;
-            font-weight: bold;
-            color: #0f172a;
-            line-height: 1;
-        }
-
         .logo-chuhatsu-img {
-            height: 22pt;
+            height: 20pt;
             width: auto;
-            max-width: 110pt;
+            max-width: 100pt;
         }
 
-        /* CATATAN PENTING */
         .ticket-note {
-            margin-top: 3pt;
-            font-size: 4.5pt;
+            font-size: 4.2pt;
             color: #64748b;
-            line-height: 1.15;
+            line-height: 1.1;
         }
 
         /* PANEL KANAN (NAVY DARK - QR) */
         .ticket-right {
-            width: 100pt;
+            width: 110pt;
             background-color: #0f172a;
             color: #ffffff;
             border-left: 1.5pt dashed #334155;
@@ -157,14 +169,14 @@
         .qr-box {
             background-color: #ffffff;
             padding: 3pt;
-            border-radius: 3pt;
+            border-radius: 4pt;
             display: inline-block;
-            margin-bottom: 3pt;
+            margin-bottom: 4pt;
         }
 
-        .qr-box img {
-            width: 62pt;
-            height: 62pt;
+        .qr-box svg {
+            width: 68pt;
+            height: 68pt;
             display: block;
         }
 
@@ -172,26 +184,26 @@
             font-size: 5pt;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 0.6pt;
+            letter-spacing: 0.8pt;
             color: #38bdf8;
-            margin-bottom: 4pt;
+            margin-bottom: 3pt;
         }
 
         .voyages-footer {
-            margin-top: 1pt;
+            margin-top: 2pt;
             text-align: center;
         }
 
         .voyages-label {
             font-size: 4pt;
             font-weight: bold;
-            color: #64748b;
+            color: #94a3b8;
             letter-spacing: 0.5pt;
             text-transform: uppercase;
         }
 
         .logo-voyages-img {
-            height: 9pt;
+            height: 10pt;
             width: auto;
             margin-top: 1pt;
         }
@@ -199,18 +211,49 @@
 </head>
 <body>
 
+@php
+    $chuhatsuLogoPath = public_path('theme/assets/images/logo-chuhatsu.png');
+    $chuhatsuLogoBase64 = file_exists($chuhatsuLogoPath) ? 'data:image/png;base64,' . base64_encode(file_get_contents($chuhatsuLogoPath)) : '';
+
+    $voyagesLogoPath = public_path('theme/assets/images/logo/logo-voyages.png');
+    $voyagesLogoBase64 = file_exists($voyagesLogoPath) ? 'data:image/png;base64,' . base64_encode(file_get_contents($voyagesLogoPath)) : '';
+
+    // Generate QR Code sebagai SVG inline (DomPDF v3 support inline SVG)
+    $qrCodeSvg = SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->margin(0)->generate($p->qr_code ?? $p->npk);
+@endphp
+
 <div class="ticket-page">
     <div class="top-accent-bar"></div>
 
     <table class="ticket-table" cellpadding="0" cellspacing="0">
         <tr>
-            <!-- PANEL KIRI -->
+            <!-- PANEL KIRI (DATA PESERTA) -->
             <td class="ticket-left">
-                <div class="event-label">CHUHATSU — FAMILY GATHERING 2026</div>
+                <table class="header-table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <div class="event-label">CHUHATSU — FAMILY GATHERING 2026</div>
+                            <div class="event-sub">LEMBANG PARK & ZOO</div>
+                        </td>
+                        <td style="text-align: right; vertical-align: top;">
+                            <div class="npk-badge">NPK: {{ $p->npk }}</div>
+                        </td>
+                    </tr>
+                </table>
+
                 <div class="participant-name">{{ $p->name }}</div>
-                <div class="event-sub">LEMBANG PARK & ZOO</div>
 
                 <table class="info-box-table" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="info-cell" width="50%">
+                            <div class="info-label">PLANT</div>
+                            <div class="info-value">{{ strtoupper($p->plant ?? '-') }}</div>
+                        </td>
+                        <td class="info-cell" width="50%">
+                            <div class="info-label">STATUS KARYAWAN</div>
+                            <div class="info-value">{{ strtoupper($p->status_karyawan ?? '-') }}</div>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="info-cell" width="50%">
                             <div class="info-label">KENDARAAN</div>
@@ -222,40 +265,45 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="info-cell" colspan="2" style="border-top: 0.5pt solid #f1f5f9; padding-top: 2pt;">
-                            <div class="info-label" style="margin-bottom: 1pt;">TOTAL TIKET ZOO</div>
-                            <div class="ticket-badge">{{ $p->total_tiket }} Tiket Masuk</div>
+                        <td class="info-cell info-cell-last" width="50%">
+                            <div class="info-label">TIKET MASUK ZOO</div>
+                            <div class="ticket-badge">{{ $p->total_tiket }} Tiket</div>
+                        </td>
+                        <td class="info-cell info-cell-last" width="50%">
+                            <div class="info-label">TANGGAL LAHIR</div>
+                            <div class="info-value">{{ $p->birthdate ? \Carbon\Carbon::parse($p->birthdate)->format('d/m/Y') : '-' }}</div>
                         </td>
                     </tr>
                 </table>
 
                 <table class="footer-left-table" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td style="vertical-align: bottom;">
-                            <div class="info-label">NOMOR NPK PESERTA</div>
-                            <div class="npk-number">{{ $p->npk }}</div>
+                        <td style="vertical-align: middle;" width="65%">
+                            <div class="ticket-note">
+                                Harap bawa tiket ini saat registrasi & penukaran tiket Lembang Park & Zoo. Valid untuk bukti registrasi resmi.
+                            </div>
                         </td>
-                        <td style="text-align: right; vertical-align: bottom;">
-                            <img src="{{ public_path('theme/assets/images/logo-chuhatsu.png') }}" class="logo-chuhatsu-img" alt="Chuhatsu Logo">
+                        <td style="text-align: right; vertical-align: middle;" width="35%">
+                            @if(!empty($chuhatsuLogoBase64))
+                                <img src="{{ $chuhatsuLogoBase64 }}" class="logo-chuhatsu-img" alt="Chuhatsu Logo">
+                            @endif
                         </td>
                     </tr>
                 </table>
-
-                <div class="ticket-note">
-                    Harap bawa tiket ini (cetak/digital) saat registrasi kehadiran & penukaran tiket Lembang Park & Zoo. Tiket berlaku sebagai bukti registrasi resmi Anda.
-                </div>
             </td>
 
-            <!-- PANEL KANAN -->
+            <!-- PANEL KANAN (QR CODE & VOYAGES LOGO) -->
             <td class="ticket-right">
                 <div class="qr-box">
-                    <img src="data:image/png;base64,{{ base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(100)->margin(0)->generate($p->qr_code ?? $p->npk)) }}" alt="QR Code">
+                    {!! $qrCodeSvg !!}
                 </div>
                 <div class="scan-text">SCAN FOR CHECK-IN</div>
 
                 <div class="voyages-footer">
                     <div class="voyages-label">EVENT BY</div>
-                    <img src="{{ public_path('theme/assets/images/logo/logo-voyages.png') }}" class="logo-voyages-img" alt="Voyages Logo">
+                    @if(!empty($voyagesLogoBase64))
+                        <img src="{{ $voyagesLogoBase64 }}" class="logo-voyages-img" alt="Voyages Logo">
+                    @endif
                 </div>
             </td>
         </tr>

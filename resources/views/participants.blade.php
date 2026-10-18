@@ -43,10 +43,14 @@
                 </button>
             </form>
 
-            <!-- Tombol Export ZIP QR (Fitur Baru) -->
-            <a href="{{ route('participants.export-qr') }}" class="btn btn-primary fw-semibold">
-                <i class="bi bi-file-earmark-zip me-2"></i>Export ZIP QR
-            </a>
+        <!-- Tombol Trigger Modal -->
+        <a href="{{ route('participants.export-qr') }}" class="btn btn-primary fw-semibold">
+            <i class="bi bi-printer me-2"></i>Export PDF
+        </a>
+        
+
+
+
         </div>
     </div>
 </div>
@@ -70,6 +74,9 @@
                             <tr>
                                 <th class="border-0 px-4 py-3">NPK</th>
                                 <th class="border-0 py-3">Nama Lengkap</th>
+                                <th class="border-0 py-3">Plant</th>
+                                <th class="border-0 py-3">Tgl Lahir</th>
+                                <th class="border-0 py-3">Tgl Masuk</th>
                                 <th class="border-0 py-3">Tanggungan</th>
                                 <th class="border-0 py-3">Status</th>
                                 <th class="border-0 py-3 text-center">Tiket Zoo</th>
@@ -98,10 +105,19 @@
                                     <span class="fw-semibold">{{ $participant->name }}</span>
                                 </td>
                                 <td class="py-3">
+                                    <span class="badge bg-light text-dark border">{{ $participant->plant ?? '-' }}</span>
+                                </td>
+                                <td class="py-3">
+                                    {{ $participant->birthdate ? \Carbon\Carbon::parse($participant->birthdate)->format('d/m/Y') : '-' }}
+                                </td>
+                                <td class="py-3">
+                                    {{ $participant->join_date ? \Carbon\Carbon::parse($participant->join_date)->format('d/m/Y') : '-' }}
+                                </td>
+                                <td class="py-3">
                                     {{ $participant->tanggungan }}
                                 </td>
                                 <td class="py-3">
-                                    @if(in_array(strtoupper($participant->status_karyawan), ['PERMANENT', 'TETAP']))
+                                    @if(in_array(strtoupper($participant->status_karyawan), ['PERMANENT', 'CONTRACT']))
                                         <span class="badge bg-success bg-opacity-10 text-success">{{ $participant->status_karyawan }}</span>
                                     @else
                                         <span class="badge bg-warning bg-opacity-10 text-warning">{{ $participant->status_karyawan }}</span>
@@ -161,6 +177,20 @@
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-6">
+                                                        <label class="form-label">Plant</label>
+                                                        <input type="text" name="plant" class="form-control" value="{{ $participant->plant }}" required>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label">Tanggal Join</label>
+                                                        <input type="date" name="join_date" class="form-control" value="{{ $participant->join_date ? \Carbon\Carbon::parse($participant->join_date)->format('Y-m-d') : '' }}">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label">Tanggal Lahir</label>
+                                                        <input type="date" name="birthdate" class="form-control" value="{{ $participant->birthdate ? \Carbon\Carbon::parse($participant->birthdate)->format('Y-m-d') : '' }}">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-6">
                                                         <label class="form-label">Tanggungan</label>
                                                         <input type="number" name="tanggungan" class="form-control" value="{{ $participant->tanggungan }}" min="0" required>
                                                     </div>
@@ -173,8 +203,7 @@
                                                     <div class="col-6">
                                                         <label class="form-label">Status Karyawan</label>
                                                         <select name="status_karyawan" class="form-select" required>
-                                                            <option value="TETAP" {{ $participant->status_karyawan == 'TETAP' ? 'selected' : '' }}>TETAP</option>
-                                                            <option value="KONTRAK" {{ $participant->status_karyawan == 'KONTRAK' ? 'selected' : '' }}>KONTRAK</option>
+                                                            <option value="CONTRACT" {{ $participant->status_karyawan == 'CONTRACT' ? 'selected' : '' }}>CONTRACT</option>
                                                             <option value="PERMANENT" {{ $participant->status_karyawan == 'PERMANENT' ? 'selected' : '' }}>PERMANENT</option>
                                                         </select>
                                                     </div>
@@ -191,7 +220,8 @@
                                                         <label class="form-label">Kendaraan</label>
                                                         <select name="kendaraan" class="form-select">
                                                             <option value="" {{ empty($participant->kendaraan) ? 'selected' : '' }}>- Belum Dipilih -</option>
-                                                            <option value="BIS" {{ $participant->kendaraan == 'BIS' ? 'selected' : '' }}>BIS</option>
+                                                            <option value="BUS DEPOK" {{ $participant->kendaraan == 'BUS DEPOK' ? 'selected' : '' }}>BUS DEPOK</option>
+                                                            <option value="BUS" {{ $participant->kendaraan == 'BUS' ? 'selected' : '' }}>BUS</option>
                                                             <option value="MOBIL PRIBADI" {{ $participant->kendaraan == 'MOBIL PRIBADI' ? 'selected' : '' }}>MOBIL PRIBADI</option>
                                                         </select>
                                                     </div>
@@ -211,7 +241,7 @@
                             </div>
                             @empty
                             <tr>
-                                <td colspan="8" class="text-center py-4">Belum ada data peserta. Silakan import atau tambah manual.</td>
+                                <td colspan="10" class="text-center py-4">Belum ada data peserta. Silakan import atau tambah manual.</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -246,7 +276,7 @@
                     <div class="mb-3">
                         <label for="file" class="form-label">Upload File (Excel)</label>
                         <input class="form-control" type="file" id="file" name="file" accept=".xlsx, .xls, .csv" required>
-                        <div class="form-text">Pastikan file berisi header: NPK, NAME, TANGGUNGAN, TOTAL, STATUS, GENDER.</div>
+                        <div class="form-text">Pastikan file berisi header: NPK, NAME, BIRTHDATE (opsional), TANGGUNGAN, TOTAL, STATUS, GENDER.</div>
                     </div>
                 </div>
                 <div class="modal-footer border-0 bg-light">

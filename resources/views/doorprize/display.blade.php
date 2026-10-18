@@ -59,15 +59,6 @@
 <body>
 
 <div class="machine-bg d-flex flex-column align-items-center justify-content-between fullscreen-container" id="machine-container">
-    
-    <!-- Header Videotron (Tanpa Tombol Admin/Navbar) -->
-    <div class="text-center text-white my-2" style="z-index: 5;">
-        <img src="{{ asset('theme/assets/images/logo-chuhatsu.png') }}" alt="Logo Chuhatsu" class="logo-chuhatsu mb-2" style="max-height: 55px;"
-             onerror="this.outerHTML='<h2 class=\'text-success fw-bolder mb-0 font-monospace\'>CHUHATSU</h2>'">
-        <h1 class="fw-bold mb-1 text-warning vt-title" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-            <i class="bi bi-magic me-2"></i>Doorprize Gathering Chuhatsu
-        </h1>
-    </div>
 
     <!-- Zoo Ornaments -->
     <div class="zoo-decor decor-tl">🌿</div>
@@ -78,11 +69,14 @@
     <!-- STATE 1: Animation Rolling (Bola acak) -->
     <div id="animation-container" class="text-center w-100 my-auto" style="z-index: 2;">
         <h2 class="text-warning text-uppercase fw-bold mb-4 vt-status" id="rolling-status" style="text-shadow: 2px 2px 6px rgba(0,0,0,0.6);">
-            🐾 Bersiaplah! Doorprize Menarik Menanti Anda... 🐾
+            ✨ TOGETHER, MEMORIES, FOREVER! SIAP BAWA PULANG HADIAHNYA? ✨"
         </h2>
+
         
-        <div id="single-ball-container" class="my-4">
-            <div class="giant-ball" id="the-ball">🦁</div>
+        <div id="single-ball-container" class="my-4 d-flex justify-content-center">
+            <div id="the-ball">
+                <img src="{{ asset('theme/assets/images/logo/logo-display.png') }}" alt="Logo Doorprize" style="max-width: 350px; width: 100%; height: auto; animation: pulse 2s infinite;">
+            </div>
         </div>
     </div>
 
@@ -133,9 +127,15 @@
     </div>
 
     <!-- Footer Visual -->
-    <div class="text-white-50 small my-1" style="z-index: 5;">
+    <div class="text-white-50 small my-2 d-flex flex-column align-items-center" style="z-index: 5;">
         <span>Doorprize System &copy; {{ date('Y') }} PT Chuhatsu Indonesia</span>
+        
+        <!-- Logo Voyages -->
+        <div class="mt-1 d-flex align-items-center" style="opacity: 0.8;">
+            <span style="font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; color: #9ca3af;" class="me-2">EVENT BY</span>
+            <img src="{{ asset('theme/assets/images/logo/logo-voyages.png') }}" alt="Voyages" style="height: 30px;">        </div>
     </div>
+
 
 </div>
 
@@ -147,8 +147,7 @@
     let rollingInterval = null;
     let audioCtx = null;
     let candidatePool = [];
-    const animals = ['🦁', '🐯', '🦒', '🐘', '🐼', '🦊', '🐸', '🐵', '🐰', '🐹'];
-
+    
     // Inisialisasi Audio kontekstual
     window.addEventListener('click', initAudio);
     function initAudio() {
@@ -175,7 +174,7 @@
 
                 if (rollingInterval) clearInterval(rollingInterval);
                 rollingInterval = setInterval(() => {
-                    document.getElementById('the-ball').innerText = animals[Math.floor(Math.random() * animals.length)];
+                    // document.getElementById('the-ball').innerText = animals[Math.floor(Math.random() * animals.length)];
                     playTick(750);
                 }, 80);
                 break;
@@ -198,7 +197,7 @@
         document.getElementById('result-table-container').classList.add('d-none');
         document.getElementById('animation-container').classList.remove('d-none');
         document.getElementById('rolling-status').innerText = '🐾 MENUNGGU INSTRUKSI OPERATOR 🐾';
-        document.getElementById('the-ball').innerText = '🦁';
+        // document.getElementById('the-ball').innerText = '🦁';
         document.getElementById('the-ball').classList.remove('spin-fast');
     }
 
@@ -266,7 +265,7 @@
                 const slotTimer = setInterval(() => {
                     const elapsed = Date.now() - startTime;
 
-                    const dummyNpk = Math.floor(100000 + Math.random() * 899999);
+                    const dummyNpk = Math.floor(1000 + Math.random() * 8999);
                     npkCell.innerHTML = `<span class="slot-rolling-npk">${dummyNpk}</span>`;
 
                     if (!isGrandPrize) playTick(650 + (Math.random() * 200));

@@ -65,7 +65,7 @@
     </div>
 
     <!-- Area Validasi (Data Registrasi) -->
-    <div class="col-xl-7 col-lg-7 mb-4 mb-lg-0">
+    <div class="col-xl-7 col-lg-7 mb-lg-0">
         <div class="card border-0 shadow-sm rounded-3 h-100">
             <div class="card-header bg-success text-white border-0 py-3 rounded-top" id="result-header">
                 <h5 class="card-title mb-0 fw-bold d-flex align-items-center fs-5">
@@ -82,24 +82,37 @@
 
                 <!-- Data Hasil Scan -->
                 <div id="user-info" class="d-none w-100">
-                    <div class="text-center mb-4">
+                    <div class="text-center">
                         <h1 class="fw-bolder mb-1 text-dark display-6" id="u-name">-</h1>
                         <p class="text-muted fs-4 fw-bold mb-0" id="u-npk">-</p>
                     </div>
                     
-                    <div class="row g-3 mb-4 justify-content-center">
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded-3 text-center h-100 border">
-                                <span class="text-secondary fs-6 fw-bold d-block mb-1">Total Tiket</span>
-                                <span class="fw-extrabold fs-2 text-gold" id="u-ticket">0</span> <span class="fw-bold text-muted fs-5">Lembar</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="p-3 bg-light rounded-3 text-center h-100 border">
-                                <span class="text-secondary fs-6 fw-bold d-block mb-1">Kendaraan</span>
-                                <span class="badge bg-dark fs-5 px-3 py-2 mt-1" id="u-vehicle">-</span>
-                            </div>
-                        </div>
+                    <!-- Informasi Kendaraan, Tanggungan, dan Tiket -->
+                    <div style="background-color: #f1f5f9; border-left: 4px solid #10b981; padding: 8px 12px; margin-bottom: 4px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="width: 50%; vertical-align: top; padding-bottom: 8px; padding-right: 6px;">
+                                    <div style="font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 2px;">Kendaraan</div>
+                                    <div style="font-size: 13px; font-weight: 800; color: #0f172a;">
+                                        <span id="u-vehicle">-</span>
+                                    </div>
+                                </td>
+                                <td style="width: 50%; vertical-align: top; padding-bottom: 8px; padding-left: 6px;">
+                                    <div style="font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 2px;">Tanggungan</div>
+                                    <div style="font-size: 13px; font-weight: 800; color: #0f172a;">
+                                        <span id="u-tanggungan"></span> Orang
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top: 4px; border-top: 1px dashed #cbd5e1;">
+                                    <div style="font-size: 8px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 3px; margin-top: 4px;">Tiket Masuk Zoo</div>
+                                    <div style="display: inline-block; background-color: #10b981; color: #ffffff; font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">
+                                        <span id="u-ticket">0</span> Tiket
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
 
                     <div class="alert alert-success d-flex align-items-center mb-0 border-0 p-3 rounded-3 shadow-sm" id="status-alert" role="alert">
@@ -412,13 +425,32 @@
             document.getElementById('u-name').innerText = participant.name;
             document.getElementById('u-npk').innerText = 'NPK: ' + participant.npk;
             document.getElementById('u-ticket').innerText = participant.total_tiket ?? '1';
-            document.getElementById('u-vehicle').innerText = participant.kendaraan ?? 'Tidak Ada';
+            document.getElementById('u-tanggungan').innerText = participant.tanggungan ?? '1';
+            
+            // Logika ganti warna background kendaraan
+            let veh = participant.kendaraan ?? 'Tidak Ada';
+            let vehLower = veh.toLowerCase().trim();
+            let elVehicle = document.getElementById('u-vehicle');
+            
+            elVehicle.innerText = veh;
+            // Jika mobil pribadi atau bus depok, ganti kelas warna jadi bg-danger (Merah)
+            if (vehLower === 'mobil pribadi' || vehLower === 'bus depok') {
+                elVehicle.className = 'badge bg-danger fs-5 px-3 py-2 mt-1';
+            } else {
+                // Selain itu, kembalikan ke bg-dark (Hitam gelap)
+                elVehicle.className = 'badge bg-dark fs-5 px-3 py-2 mt-1';
+            }
         } else {
             document.getElementById('u-name').innerText = 'Tidak Ditemukan';
             document.getElementById('u-npk').innerText = '-';
             document.getElementById('u-ticket').innerText = '0';
-            document.getElementById('u-vehicle').innerText = '-';
+            document.getElementById('u-tanggungan').innerText = participant.tanggungan ?? '1';
+            
+            let elVehicle = document.getElementById('u-vehicle');
+            elVehicle.innerText = '-';
+            elVehicle.className = 'badge bg-dark fs-5 px-3 py-2 mt-1';
         }
+
     }
 
     function prependTableRows(participant, attendanceId) {
@@ -499,7 +531,6 @@
             btn.innerHTML = originalText;
         });
     }
-
 
     function toggleSelectAll(masterCheckbox) {
         const checkboxes = document.querySelectorAll('.row-checkbox');

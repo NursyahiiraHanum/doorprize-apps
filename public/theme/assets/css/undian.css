@@ -1,0 +1,176 @@
+ /* Desain Container Utama */
+        .machine-bg {
+            background: linear-gradient(135deg, #1a4a1c 0%, #3a7d44 50%, #1e5631 100%);
+            border-radius: 1rem;
+            min-height: 85vh;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.7);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Fullscreen Custom Styles */
+        .fs-header { display: none; }
+
+        #machine-container:fullscreen,
+        #machine-container:-webkit-full-screen {
+            width: 100vw;
+            height: 100vh;
+            min-height: 100vh;
+            border-radius: 0;
+            padding: 2rem !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #machine-container:fullscreen .fs-header,
+        #machine-container:-webkit-full-screen .fs-header {
+            display: block;
+            position: relative;
+            text-align: center;
+            z-index: 5;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ornamen Zoo Floating */
+        .zoo-decor {
+            position: absolute;
+            font-size: 4.5rem;
+            opacity: 0.85;
+            pointer-events: none;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            z-index: 0;
+            transition: font-size 0.3s ease;
+        }
+        .decor-tl { top: -20px; left: -10px; transform: rotate(115deg); }
+        .decor-tr { top: -20px; right: -10px; transform: rotate(-115deg); }
+        .decor-bl { bottom: -10px; left: 10px; transform: rotate(25deg); }
+        .decor-br { bottom: -10px; right: 10px; transform: rotate(-25deg); }
+
+        /* TABEL BERNUANSA ZOO */
+        .zoo-table-card {
+            background: #fdfbf7;
+            border: 4px solid #52b788;
+            border-radius: 1.25rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .zoo-table {
+            border-color: #b7e4c7 !important;
+        }
+
+        .zoo-table thead {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+            color: #ffe6a7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .zoo-table tbody tr {
+            transition: all 0.4s ease;
+        }
+
+        .zoo-table tbody tr:nth-of-type(odd) {
+            background-color: rgba(216, 243, 220, 0.25);
+        }
+
+        .zoo-table tbody tr:nth-of-type(even) {
+            background-color: #ffffff;
+        }
+
+        /* Animasi pengisian baris satu per satu */
+        .zoo-table tbody tr.row-revealed {
+            animation: popInRow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background-color: #fff3bf !important; /* Highlight Emas */
+        }
+
+        /* Highlight khusus saat sistem sedang menunggu jeda (Thinking/Suspense) */
+        .zoo-table tbody tr.row-suspense {
+            background-color: #ffe8cc !important;
+            animation: pulseTension 0.6s infinite alternate;
+        }
+
+        @keyframes popInRow {
+            0% { transform: scale(0.95); opacity: 0.3; }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulseTension {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+
+        /* Badge Hadiah Zoo */
+        .prize-tag {
+            background: #e9edc9;
+            color: #333d29;
+            border: 1px solid #ccd5ae;
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .prize-grand {
+            background: linear-gradient(135deg, #d90429, #ef233c);
+            color: #ffffff;
+            font-weight: 800;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.82rem;
+            box-shadow: 0 3px 8px rgba(239, 35, 60, 0.4);
+            animation: pulseGrand 1.2s infinite;
+        }
+
+        @keyframes pulseGrand {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-chuhatsu {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /* Slot Reel Animation styles */
+        .slot-rolling-npk {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 800;
+            color: #d97706;
+            letter-spacing: 2px;
+            animation: slotFlicker 0.15s infinite;
+        }
+
+        .slot-rolling-name {
+            color: #1e3a8a;
+            font-weight: 700;
+            font-style: italic;
+            animation: slotFlicker 0.15s infinite;
+        }
+
+        @keyframes slotFlicker {
+            0% { opacity: 0.7; transform: translateY(-1px); }
+            50% { opacity: 1; transform: translateY(1px); }
+            100% { opacity: 0.7; transform: translateY(-1px); }
+        }
+
+        .giant-ball {
+            font-size: 8rem;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            transition: transform 0.2s ease;
+        }
+
+        .spin-fast {
+            animation: ballSpin 0.3s linear infinite;
+        }
+
+        @keyframes ballSpin {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.15) rotate(180deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }

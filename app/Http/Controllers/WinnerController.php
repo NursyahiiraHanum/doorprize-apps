@@ -24,12 +24,13 @@ class WinnerController extends Controller
                       ->orWhere('sesi', 'like', "%{$sesi}%");
                 });
             })
-            // Filter Pencarian (Nama, NPK, Hadiah)
+            // Filter Pencarian (Nama, NPK, Plant, Hadiah)
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($q) use ($search) {
                     $q->whereHas('participant', function ($qp) use ($search) {
                         $qp->where('name', 'like', "%{$search}%")
-                           ->orWhere('npk', 'like', "%{$search}%");
+                           ->orWhere('npk', 'like', "%{$search}%")
+                           ->orWhere('plant', 'like', "%{$search}%"); // 📌 Pencarian berdasarkan Plant
                     })
                     ->orWhereHas('prize', function ($qpz) use ($search) {
                         $qpz->where('name', 'like', "%{$search}%");

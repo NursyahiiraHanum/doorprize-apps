@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - GrowigoDash</title>
+    <link rel="shortcut icon" href="assets/images/logo/icon.svg" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-5/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/css/main/app.css">
+
+    <!-- Page Specific Style -->
+    <link rel="stylesheet" href="assets/css/pages/auth-register.css">
+</head>
+
+<body>
+
+    <div class="container-fluid p-0" id="auth-register">
+        <div class="row g-0">
+            <!-- Left Side: Branding -->
+            <div class="col-lg-6 col-12 order-lg-1 order-1">
+                <div class="auth-sidebar">
+                    <div class="login-logo-container">
+                        <img src="assets/images/logo/logo.svg" alt="GrowigoDash Logo" class="register-logo">
+                    </div>
+                    <div class="register-branding-text">
+                        <h1>Join the future<br>of dashboarding.</h1>
+                        <p>Create your account today and start managing your projects with ease and style.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="col-lg-6 col-12 order-lg-2 order-2">
+                <div class="auth-content">
+                    <div class="auth-form-wrapper">
+                        <!-- Mobile Logo (Visible only on small screens) -->
+                        <div class="text-center d-lg-none mb-4">
+                            <img src="assets/images/logo/logo.svg" alt="GrowigoDash Logo" class="register-logo-mobile"
+                                style="width: 150px;">
+                        </div>
+
+                        <h1 class="register-title">Register</h1>
+                        <p class="register-subtitle">Create your account to get started.</p>
+
+                        <form action="auth-login.html">
+                            <div class="form-group mb-4">
+                                <label for="fullname" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0"><i
+                                            class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control border-start-0 ps-0" id="fullname"
+                                        placeholder="Ari Fazrian" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0"><i
+                                            class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control border-start-0 ps-0" id="email"
+                                        placeholder="name@company.com" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white border-end-0"><i
+                                                    class="bi bi-shield-lock"></i></span>
+                                            <input type="password" class="form-control border-start-0 border-end-0 ps-0"
+                                                id="password" placeholder="••••••••" required>
+                                            <span class="input-group-text bg-white border-start-0" id="toggle-password"
+                                                style="cursor: pointer;">
+                                                <i class="bi bi-eye"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-white border-end-0"><i
+                                                    class="bi bi-shield-lock"></i></span>
+                                            <input type="password" class="form-control border-start-0 border-end-0 ps-0"
+                                                id="confirm-password" placeholder="••••••••" required>
+                                            <span class="input-group-text bg-white border-start-0"
+                                                id="toggle-confirm-password" style="cursor: pointer;">
+                                                <i class="bi bi-eye"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 shadow-sm mb-4">Create Account</button>
+
+                            <!-- Social Login -->
+                            <div class="auth-divider">Or register with</div>
+                            <button type="button" class="btn btn-google w-100">
+                                <i class="bi bi-google"></i> Register with Google
+                            </button>
+                        </form>
+
+                        <div class="mt-5 text-center small">
+                            <p class="text-muted">Already have an account? <a href="auth-login.html"
+                                    class="fw-bold">Sign In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/extensions/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <!-- Page Specific Script -->
+    <script src="assets/js/pages/auth-register.js"></script>
+</body>
+
+</html>

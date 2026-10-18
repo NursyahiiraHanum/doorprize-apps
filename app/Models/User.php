@@ -53,8 +53,8 @@ class User extends Authenticatable
      * Overrides default to prevent null being passed to hash_equals()
      * in SessionGuard when validating remember-me cookies.
      */
-    public function getAuthPassword(): string
+    public function getRememberToken(): string
     {
-        return $this->password ?? '';
+        return $this->remember_token ?? '';
     }
 }

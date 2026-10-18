@@ -16,5 +16,13 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (\TypeError $e, $request) {
+            if (str_contains($e->getMessage(), 'hash_equals')) {
+                \Illuminate\Support\Facades\Cookie::queue(\Illuminate\Support\Facades\Cookie::forget(\Illuminate\Support\Facades\Auth::getRecallerName()));
+                if ($request->hasSession()) {
+                    $request->session()->invalidate();
+                }
+                return redirect('/login')->with('error', 'Sesi Anda telah kedaluwarsa setelah database di-reset. Silakan login kembali.');
+            }
+        });
     })->create();

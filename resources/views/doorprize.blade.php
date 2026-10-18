@@ -183,19 +183,44 @@
         document.getElementById('btn-stop').classList.add('d-none');
         document.getElementById('btn-start').classList.remove('d-none');
 
-        // Randomize Winner Allocation
-        const finalWinners = [];
-        const poolCopy = [...currentCandidates];
+        // Stratified Balanced NPK Selection (Meratakan Pemenang dari NPK Bawah sampai NPK Atas)
+        const totalPrizesCount = currentPrizes.length;
+        
+        // 1. Urutkan seluruh kandidat berdasarkan NPK secara numerik
+        const sortedCandidates = [...currentCandidates].sort((a, b) => {
+            const npkA = parseInt(String(a.npk).replace(/\D/g, '')) || 0;
+            const npkB = parseInt(String(b.npk).replace(/\D/g, '')) || 0;
+            return npkA - npkB;
+        });
 
-        for (let i = 0; i < currentPrizes.length; i++) {
-            const randIndex = Math.floor(Math.random() * poolCopy.length);
-            const winnerData = { ...poolCopy[randIndex] };
-            winnerData.prize_id = currentPrizes[i].id;
-            winnerData.prize_name = currentPrizes[i].name;
+        // 2. Bagi kandidat menjadi N rentang (bucket) NPK yang seimbang
+        const selectedCandidates = [];
+        const totalCandidatesCount = sortedCandidates.length;
 
-            finalWinners.push(winnerData);
-            poolCopy.splice(randIndex, 1);
+        for (let i = 0; i < totalPrizesCount; i++) {
+            const startIndex = Math.floor((i * totalCandidatesCount) / totalPrizesCount);
+            const endIndex = Math.floor(((i + 1) * totalCandidatesCount) / totalPrizesCount);
+            
+            // Ambil kandidat dalam rentang NPK bucket ini
+            const bucket = sortedCandidates.slice(startIndex, Math.max(startIndex + 1, endIndex));
+            
+            // Pilih 1 kandidat acak dari bucket tersebut
+            const randInBucket = Math.floor(Math.random() * bucket.length);
+            selectedCandidates.push(bucket[randInBucket]);
         }
+
+        // 3. Acak urutan tampilan pemenang (Fisher-Yates Shuffle) agar tidak urut NPK saat tampil
+        for (let i = selectedCandidates.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [selectedCandidates[i], selectedCandidates[j]] = [selectedCandidates[j], selectedCandidates[i]];
+        }
+
+        // 4. Pasangkan kandidat terpilih dengan list hadiah
+        const finalWinners = selectedCandidates.map((candidate, idx) => ({
+            ...candidate,
+            prize_id: currentPrizes[idx].id,
+            prize_name: currentPrizes[idx].name,
+        }));
 
         lastGeneratedWinners = finalWinners;
 
